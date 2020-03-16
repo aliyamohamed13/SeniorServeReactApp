@@ -22,13 +22,13 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={this.handleSubmit()}>
           <FormGroup controlId="username" bsSize="large">
             <ControlLabel>Email</ControlLabel>
             <FormControl
               autoFocus
               type="username"
-              value={username}
+              //value={username}
               onChange={e => this.setState({ username: e.target.value })}
             />
           </FormGroup>
