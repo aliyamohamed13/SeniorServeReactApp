@@ -17,14 +17,14 @@ class Login extends Component {
     axios.post("http://localhost:8080/api/v1/user/", {
       username: this.state.username
     });
+    console.log("posted");
   }
 
   render() {
     return (
       <div className="Login">
-        <form onSubmit={this.handleSubmit()}>
+        <form>
           <FormGroup controlId="username" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
             <FormControl
               autoFocus
               type="username"
@@ -44,7 +44,7 @@ class Login extends Component {
             block
             bsSize="large"
             type="submit"
-            onSubmit={this.handleSubmit()}
+            onSubmit={e => this.handleSubmit(e)}
           >
             Login
           </Button>
