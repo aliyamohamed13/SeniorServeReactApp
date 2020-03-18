@@ -10,36 +10,42 @@ class Login1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: ""
+      username: ""
+      // password: ""
     };
   }
   handleClick(event) {
     var apiBaseUrl = "http://localhost:8080/api/v1/user/";
     var self = this;
     console.log(this.state.username);
-    var payload = {
-      username: this.state.username
-      //   password: this.state.password
-    };
+    var payload = this.state.username;
+    //   password: this.state.password
+
+    console.log(payload);
+
+    //TODO this get doesnt send with payload, response seems to be just from baseurl
     axios
-      .post(apiBaseUrl, payload)
+      .get(apiBaseUrl, payload)
       .then(function(response) {
+        console.log(apiBaseUrl);
+        console.log(payload);
         console.log(response);
-        if (response.data.code == 200) {
-          console.log("Login successfull");
-          var taskBoard = [];
-          taskBoard.push(<TaskBoard appContext={self.props.appContext} />);
-          self.props.appContext.setState({
-            loginPage: [],
-            taskBoard: taskBoard
-          });
-        } else if (response.data.code == 204) {
-          console.log("Username password do not match");
-          alert("username password do not match");
+        console.log(response.data.contains(payload));
+        if ((response.status == 200) & response.data.contains(payload)) {
+          console.log("Login successful");
+
+          //   var taskBoard = [];
+          //   taskBoard.push(<TaskBoard appContext={self.props.appContext} />);
+          //   self.props.appContext.setState({
+          //     loginPage: [],
+          //     taskBoard: taskBoard
+          //   });
+        } else if (response.status == 500) {
+          console.log("username does not exist");
+          alert("Username does not exist, please register");
         } else {
-          console.log("Username does not exists");
-          alert("Username does not exist");
+          console.log("something went wrong");
+          alert("Something went wrong, please try again");
         }
       })
       .catch(function(error) {
