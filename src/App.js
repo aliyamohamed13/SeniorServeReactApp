@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Users from "./components/users";
-import Login1 from "./components/login1";
+import Login from "./components/login";
 
 class App extends Component {
   state = {
@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   render() {
-    return <Login1 />;
+    return <Login />;
     // {
     /* <Users users={this.state.users} />; */
     // }
