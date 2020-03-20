@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 
-class TaskBoard extends Component {
+class TasksBoard extends Component {
   render() {
-    return <p>This is the TaskBoard</p>;
+    return (
+    	<h1> This is the TasksBoard </h1>
+    )
   }
 }
 
-export default TaskBoard;
+export default TasksBoard;
