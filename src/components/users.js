@@ -7,13 +7,13 @@ const Users = ({ users }) => {
         <h1>User List</h1>
       </center>
       {users.map(user => (
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{user.username}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">{user.username}</h5>
+            <h6 className="card-subtitle mb-2 text-muted">
               {user.firstName} {user.lastName}
             </h6>
-            <p class="card-text">{user.address}</p>
+            <p className="card-text">{user.address}</p>
           </div>
         </div>
       ))}

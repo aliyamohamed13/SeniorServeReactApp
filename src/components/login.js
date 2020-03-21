@@ -75,7 +75,10 @@ class Login extends Component {
         <Router>
           <Switch>
             <Route path="/mainlanding" component={Mainlanding} />
-            <Redirect to="/mainlanding"></Redirect>
+            <Redirect to={{
+              pathname: "/mainlanding",
+              state: {username: this.state.username}
+              }}></Redirect>
           </Switch>
         </Router>
       )
