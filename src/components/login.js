@@ -70,6 +70,7 @@ class Login extends Component {
 
   render() {
     if (this.state.redirect) {
+      React.createContext(this.state.username);
       console.log("redirecting...")
       return (
         <Router>
