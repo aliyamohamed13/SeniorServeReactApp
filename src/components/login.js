@@ -31,7 +31,7 @@ class Login extends Component {
       firstName: "",
       lastName: "",
       address: "",
-      postalcode: ""
+      postalCode: ""
     };
   }
 
@@ -51,13 +51,13 @@ class Login extends Component {
     } else {
       axios
         .post(
-          apiBaseUrl +
+          apiBaseUrl,
             {
               username: this.state.regUsername,
               firstName: this.state.firstName,
               lastName: this.state.lastName,
               address: this.state.address,
-              postalcode: this.state.postalcode
+              postalCode: this.state.postalcode
             }
         )
         .then(function(response) {
@@ -65,7 +65,7 @@ class Login extends Component {
           console.log(response);
           console.log(response.data);
           if (response.status === 200) {
-            if (response.data !== "") {
+            if (response.data === "") {
               console.log("Registration successful");
               this.setState({ redirect: true });
             } else {
