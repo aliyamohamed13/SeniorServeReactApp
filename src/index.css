@@ -19,29 +19,3 @@ code {
 .nav-item {
   color: black;
 }
-
-nav {
-  background-color: #ffffff;
-  color: #003da5;
-  overflow: hidden;
-  display: flex;
-  width: 100%;
-  position: sticky;
-  top: 0;
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0px 3px;
-  text-align: justify;
-}
-
-nav a {
-  padding: 16px;
-  margin-right: 10px;
-  text-align: center;
-  text-decoration: none;
-  font-family: Helvetica;
-  font-size: 18px;
-}

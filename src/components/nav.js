@@ -29,10 +29,10 @@ const NavbarSS = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-left" navbar>
             <NavItem>
-              <NavLink href="/mainlanding/"> Home</NavLink>
+              <NavLink href="/mainlanding"> Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="taskboard">TaskBoard</NavLink>
+              <NavLink href="/taskboard">TaskBoard</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/records"> Volunteer Records</NavLink>
