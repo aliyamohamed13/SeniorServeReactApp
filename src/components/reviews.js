@@ -5,7 +5,9 @@ class Reviews extends Component {
 	constructor() {
 		super()
 		this.state = {
-			reviewInfo: []
+			reviewInfo: [],
+			volunteerUserName: "",
+			taskID: ""
 		}
 	}
 
@@ -19,16 +21,35 @@ class Reviews extends Component {
 		    .catch(console.log);
 	}
 
+	handleSubmit = (event) => {
+		console.log(this.state.volunteerUserName)
+		console.log(this.state.taskID)
+		console.log(this.state.reviewInfo)
+		event.preventDefault()
+
+	}
+
+	handleChange = (event) => {
+		console.log(event)
+		this.setState({taskID: event.target.value})
+	}
+
   	render() {
 	    return (
 	    	<div>
-		    	<form>
+		    	<form onSubmit={event => this.handleSubmit(event)}>
 		    		<h3>filter</h3>
-		    			  {['volunteerUserName', 'rating', 'taskID'].map(key => (
-						    <select key={key}>
-						      {this.state.reviewInfo.map(({ [key]: value }) => <option key={value}>{value}</option>)}
-						    </select>
+		    			  {['volunteerUserName', 'taskID'].map(key => (
+		    			  	<div>
+			    			  	<label> {key}: </label>
+							    <select onChange={(e) => this.setState({[key]: e.target.value})} key={key}>
+							    {this.state.reviewInfo.map(({ [key]: value }) => 
+							    	<option key={value}>{value}
+                					</option>)}
+							    </select>
+						    </div>
 						  ))}
+					<button type="submit"> Filter </button>
 		    	</form>
 
 		    
