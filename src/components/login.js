@@ -27,7 +27,8 @@ class Login extends Component {
   }
 
   handleClick(event) {
-    event.preventdefault();
+    //event.preventdefault();
+    console.log(this.state.username)
     var apiBaseUrl = "http://localhost:8080/api/v1/user/";
     var self = this;
     console.log("username: ${this.state.username}");
@@ -86,8 +87,8 @@ class Login extends Component {
                 name="username"
                 id="username"
                 placeholder="username"
-                onChange={(event, newValue) =>
-                  this.setState({ username: newValue })
+                onChange={(event) =>
+                  this.setState({ username: event.target.value })
                 }
               />
             </FormGroup>
