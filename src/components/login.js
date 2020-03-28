@@ -41,6 +41,8 @@ class Login extends Component {
     console.log(this.state.lastName);
     console.log(this.state.address);
     console.log(this.state.postalcode);
+    var self = this;
+
     if (
       (this.state.regUsername === "") |
       (this.state.firstName === "") |
@@ -50,16 +52,13 @@ class Login extends Component {
     ) {
     } else {
       axios
-        .post(
-          apiBaseUrl,
-            {
-              username: this.state.regUsername,
-              firstName: this.state.firstName,
-              lastName: this.state.lastName,
-              address: this.state.address,
-              postalCode: this.state.postalcode
-            }
-        )
+        .post(apiBaseUrl, {
+          username: this.state.regUsername,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          address: this.state.address,
+          postalCode: this.state.postalcode
+        })
         .then(function(response) {
           console.log(apiBaseUrl);
           console.log(response);
@@ -67,7 +66,7 @@ class Login extends Component {
           if (response.status === 200) {
             if (response.data === "") {
               console.log("Registration successful");
-              this.setState({ redirect: true });
+              self.setState({ redirect: true });
             } else {
               alert(
                 "This user may already exist, please try again or try logging in"
@@ -81,43 +80,10 @@ class Login extends Component {
         .catch(function(error) {
           console.log(error);
         });
-      // axios({
-      //   method: "post",
-      //   url: apiBaseUrl,
-      //   data: {
-      //     username: this.state.regUsername,
-      //     firstName: this.state.firstName,
-      //     lastName: this.state.lastName,
-      //     address: this.state.address,
-      //     postalcode: this.state.postalcode
-      //   }
-      // })
-      //   .then(function(response) {
-      //     console.log(apiBaseUrl);
-      //     console.log(response);
-      //     console.log(response.data);
-      //     if (response.status === 200) {
-      //       if (response.data !== "") {
-      //         console.log("Registration successful");
-      //         this.setState({ redirect: true });
-      //       } else {
-      //         alert(
-      //           "This user may already exist, please try again or try logging in"
-      //         );
-      //       }
-      //     } else {
-      //       console.log("something went wrong");
-      //       alert("Something went wrong, please try again");
-      //     }
-      //   })
-      //   .catch(function(error) {
-      //     console.log(error);
-      //   });
     }
   }
 
   handleClick(event) {
-    //event.preventdefault();
     console.log(this.state.username);
 
     var self = this;
@@ -179,7 +145,6 @@ class Login extends Component {
               <br />
               <h3 style={{ marginBottom: "30px" }}>Login:</h3>
               <Form>
-                {/* onSubmit={event => this.handleClick(event)} */}
                 <FormGroup style={{ marginBottom: "30px" }}>
                   <Input
                     type="text"
@@ -191,10 +156,6 @@ class Login extends Component {
                     }
                   />
                 </FormGroup>
-
-                {/* <FormGroup style={{"marginBottom":"30px"}}>
-          <Input type="password" name="password" id="password" placeholder="password" />
-        </FormGroup> */}
                 <Button
                   style={{
                     marginBottom: "30px",
@@ -214,7 +175,6 @@ class Login extends Component {
             <br />
             <h3 style={{ marginBottom: "30px" }}>Register:</h3>
             <Form>
-              {/* onSubmit={event => this.handleClick(event)} */}
               <FormGroup style={{ marginBottom: "30px" }}>
                 <Input
                   type="text"
@@ -270,9 +230,6 @@ class Login extends Component {
                   }
                 />
               </FormGroup>
-              {/* <FormGroup style={{"marginBottom":"30px"}}>
-          <Input type="password" name="password" id="password" placeholder="password" />
-        </FormGroup> */}
               <Button
                 style={{
                   marginBottom: "30px",
