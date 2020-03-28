@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: brown;
 }
 
 code {
@@ -13,14 +12,19 @@ code {
     monospace;
 }
 
+h1,
+h2 {
+  text-align: center;
+}
+#root {
+  text-align: center;
+}
 .LoginRegForm {
-  color: white;
-  background-color: brown;
   border: 1px;
   padding: 10%;
   display: inline-block;
   text-align: center;
-  width: 50%;
+  width: 100%;
   margin: auto auto;
   opacity: 0.9;
 }
