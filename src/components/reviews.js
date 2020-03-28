@@ -26,12 +26,7 @@ class Reviews extends Component {
 		console.log(this.state.taskID)
 		console.log(this.state.reviewInfo)
 		event.preventDefault()
-
-	}
-
-	handleChange = (event) => {
-		console.log(event)
-		this.setState({taskID: event.target.value})
+		// need to make api backend call here to retrive filtered reviews
 	}
 
   	render() {
@@ -42,7 +37,7 @@ class Reviews extends Component {
 		    			  {['volunteerUserName', 'taskID'].map(key => (
 		    			  	<div>
 			    			  	<label> {key}: </label>
-							    <select onChange={(e) => this.setState({[key]: e.target.value})} key={key}>
+							    <select onChange={(e) => this.setState({ [key]: e.target.value})} key={key}>
 							    {this.state.reviewInfo.map(({ [key]: value }) => 
 							    	<option key={value}>{value}
                 					</option>)}
