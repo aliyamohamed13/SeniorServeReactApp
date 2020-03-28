@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Tasks from './tasks'
+import {Modal, Button} from 'react-bootstrap';
 
 
 class GeneralTasksBoard extends Component {
@@ -14,9 +15,21 @@ class GeneralTasksBoard extends Component {
 			
 			SelectedCities:[],
 			SelectedProvinces:[],
-			SelectedPreferences:[]
+			SelectedPreferences:[],
+
+			show: false
 		}
 	}
+
+	handleClose = () => {
+		this.setState({show: false});
+		console.log(this.state.show)
+	}
+  	
+  	handleShow = () => {
+  		this.setState({show: true});
+  		console.log(this.state.show)
+  	}
 
 	componentDidMount() {
 	 	console.log(this.props.username)
@@ -72,6 +85,10 @@ class GeneralTasksBoard extends Component {
 				.forEach( ele => ele.checked = false );
 	}
 
+	handleShow = () => {
+
+	}
+
 
 	render() {
 	  	
@@ -113,7 +130,26 @@ class GeneralTasksBoard extends Component {
 		    			</div>
 					<button type="submit"> Filter </button>
 		    	</form>
-		    	<Tasks tasks={this.state.TaskInfo} />
+
+		    	<button type="button" onClick={this.handleShow}>
+        			Add Task
+      			</button>
+				
+				<Modal show={this.state.show} onHide={this.handleClose}>
+			        <Modal.Header closeButton>
+			          <Modal.Title>Task Information</Modal.Title>
+			        </Modal.Header>
+			        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+			        <Modal.Footer>
+			          <Button variant="secondary" onClick={this.handleClose}>
+			            Close
+			          </Button>
+			          <Button variant="primary" onClick={this.handleClose}>
+			            Save Changes
+			          </Button>
+			        </Modal.Footer>
+			    </Modal>
+			<Tasks tasks={this.state.TaskInfo} />
 		    </div>
 	    )
 	}
