@@ -14,7 +14,7 @@ class GeneralTasksBoard extends Component {
 		super()
 		this.state = {
 			TaskInfo: [],
-// TODO populate with API calls
+
 			Cities: [],
 			Provinces: [],
 			Preferences: [],
