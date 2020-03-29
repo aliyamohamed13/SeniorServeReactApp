@@ -24,28 +24,28 @@ const NavbarSS = props => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/#"> seniorServe</NavbarBrand>
+        <NavbarBrand> seniorServe</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-left" navbar>
             <NavItem>
-              <NavLink href="/mainlanding"> Home</NavLink>
+              <Link to="/mainlanding">Home</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/taskboard">TaskBoard</NavLink>
+              <Link to="/taskboard">TaskBoard</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/records"> Volunteer Records</NavLink>
+              <Link to="/records"> Volunteer Records</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/reviews"> Reviews</NavLink>
+              <Link to="/reviews"> Reviews</Link>
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink className="nav-link active" className="logout" href="/">
+              <Link className="nav-link active" className="logout" href="/">
                 logout
-              </NavLink>
+              </Link>
             </NavItem>
           </Nav>
         </Collapse>
