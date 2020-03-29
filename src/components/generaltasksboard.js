@@ -23,11 +23,7 @@ class GeneralTasksBoard extends Component {
 			SelectedProvinces:[],
 			SelectedPreferences:[],
 
-			AllPreferencesForAddTask: [{
-				"pref_ID": 1,
-		        "pref_name": "Outdoors",
-		        "description": "working outdoors in the sun"
-			}],
+			AllPreferencesForAddTask: [],
 
 			show: false,
 			// Add task form state

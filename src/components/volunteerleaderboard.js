@@ -25,18 +25,18 @@ class VolunteerLeaderBoard extends Component {
 	    	<div>
 	    		<h1>Snapshot of Volunteer Achievements</h1>
 	    		<table>
-		    		<tr>
-		    			<th colspan="2">Highest Rated Volunteers</th>
-		    		</tr>
-		    		<tr>
+		    		<thead>
+		    			<th colSpan="2">Top 5 Highest Rated Volunteers</th>
+		    		</thead>
+		    		<thead>
 		    			<th>Volunteer</th>
 		    			<th>Rating</th>
-		    		</tr>
+		    		</thead>
 		    		{this.state.leaderboard.map(volunteerRating => (
-		    			<tr>
+		    			<tbody>
 		    				<td>{volunteerRating.username}</td>
 		    				<td>{volunteerRating.rating}</td>
-		    			</tr>
+		    			</tbody>
 		    		))}
 	    		</table>
 	    	</div>
