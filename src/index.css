@@ -32,6 +32,11 @@ h2 {
 #root {
   text-align: center;
 }
+
+.profile-row {
+  display: inline-block;
+}
+
 .LoginRegForm {
   border: 1px;
   padding: 10%;
