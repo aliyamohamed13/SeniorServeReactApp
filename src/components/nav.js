@@ -18,6 +18,9 @@ class Nav extends Component {
 	    		<Link to="/reviews">
 	    			<li>Reviews</li>
 	    		</Link>
+	    		<Link to="/generalTasksBoard">
+	    			<li>All Tasks</li>
+	    		</Link>
 	    	</ul>
 	    )
   }

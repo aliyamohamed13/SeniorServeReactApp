@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import Tasks from "./tasks";
-import Welcome from "./welcome.js";
-import Login from "./login.js"
-
 
 class TasksBoard extends Component {
 
