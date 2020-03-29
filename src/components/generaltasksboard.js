@@ -15,9 +15,9 @@ class GeneralTasksBoard extends Component {
 		this.state = {
 			TaskInfo: [],
 // TODO populate with API calls
-			Cities: ['Toronto', 'Vancouver', 'Calgary', 'Edmonton', 'Waterloo','Quebec', 'Burnaby', 'London'],
-			Provinces: ['ON', 'BC', 'AB', 'QC'],
-			Preferences: ['Outdoors', 'Indoors', 'Labour', 'Social', 'Behind the Scenes'],
+			Cities: [],
+			Provinces: [],
+			Preferences: [],
 			
 			SelectedCities:[],
 			SelectedProvinces:[],
@@ -43,6 +43,21 @@ class GeneralTasksBoard extends Component {
 		       this.setState({ TaskInfo: data });
 		    })
 		    .catch(console.log);
+		fetch("http://localhost:8080/api/v1/preference/getAllPreferenceNames")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({Preferences: data})
+			})
+		fetch("http://localhost:8080/api/v1/location/getAllCities")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({Cities: data})
+			})
+		fetch("http://localhost:8080/api/v1/location/getAllProvinces")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({Provinces: data})
+			})
 	}
 
 	handleClose = () => {
@@ -246,6 +261,10 @@ class GeneralTasksBoard extends Component {
 		    			</div>
 					<button type="submit"> Filter </button>
 		    	</form>
+
+		    	<button type="button" onClick={this.reset}>
+        			Show All Tasks
+      			</button>
 
 		    	<button type="button" onClick={this.handleShow}>
         			Add Task

@@ -14,7 +14,7 @@ const Tasks = ({ tasks }) => {
             <h6 className="card-subtitle mb-2 text-muted">
               {task.Date} status: {task.Status}
             </h6>
-            <p className="card-text">{task.Address} {task.PostalCode}</p>
+            <p className="card-text">{task.Address} {task.City} {task.Province} {task.PostalCode}</p>
           </div>
         </div>
       ))}
