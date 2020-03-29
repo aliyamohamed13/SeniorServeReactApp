@@ -66,6 +66,7 @@ class Login extends Component {
           if (response.status === 200) {
             if (response.data === "") {
               console.log("Registration successful");
+              self.setState({username: self.state.regUsername})
               self.setState({ redirect: true });
             } else {
               alert(
