@@ -23,15 +23,22 @@ class GeneralTasksBoard extends Component {
 			SelectedProvinces:[],
 			SelectedPreferences:[],
 
-			show: false,
+			AllPreferencesForAddTask: [{
+				"pref_ID": 1,
+		        "pref_name": "Outdoors",
+		        "description": "working outdoors in the sun"
+			}],
 
+			show: false,
+			// Add task form state
 			Date: "",
 	        Description: "",
 	        Num_Volunteer: "",
 	        PostalCode: "",
 	        Address: "",
 	        City: "",
-	        Province: ""
+	        Province: "",
+	        AddTaskPreferencesID: []
 		}
 	}
 
@@ -58,6 +65,11 @@ class GeneralTasksBoard extends Component {
 			.then(data => {
 				this.setState({Provinces: data})
 			})
+		fetch("http://localhost:8080/api/v1/preference")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({AllPreferencesForAddTask: data})
+			})
 	}
 
 	handleClose = () => {
@@ -67,7 +79,10 @@ class GeneralTasksBoard extends Component {
 				       Description: "",
 				       Num_Volunteer: "",
 				       PostalCode: "",
-				       Address: ""})
+				       Address: "",
+				       City: "",
+	        		   Province: "",
+				   	   AddTaskPreferencesID:[]})
 
 	}
   	
@@ -121,6 +136,7 @@ class GeneralTasksBoard extends Component {
 
 	handleAddTask = () => {
 		console.log("trying to add task")
+		console.log(this.state.AddTaskPreferencesID)
 		this.setState({CreateTime: this.getDate()})
 		if ((this.state.Date === "") ||
 		    (this.state.Description === "") ||
@@ -154,6 +170,7 @@ class GeneralTasksBoard extends Component {
 	    }		
 	}
 
+// TODO: need to add additional API call for task has preferences
 	finishAddTask = () => {
 		var apiTaskPostUrl = "http://localhost:8080/api/v1/task/"
 		var randomTaskID = Math.floor(Math.random() * 1000000000)
@@ -352,6 +369,21 @@ class GeneralTasksBoard extends Component {
 			                    this.setState({ PostalCode: event.target.value })
 			                  }
 			                />
+			              </FormGroup>
+			              <FormGroup style={{ marginBottom: "30px" }}>
+			              <label> Preferences: </label>
+			              	{this.state.AllPreferencesForAddTask.map(key => (
+				    			<div style={{position: "relative", left: "25px"}}>
+					    			<div>
+										<Input 
+											type="checkbox"
+							                name= {key.pref_name}
+							                id= {key.pref_name}
+											onChange={(e) => this.setState({AddTaskPreferencesID: [...this.state.AddTaskPreferencesID, key.pref_ID]})}/>
+										<label> {key.pref_name}: {key.description} </label>
+									</div>
+								</div>
+							))}
 			              </FormGroup>
 			            </Form>
 			        </Modal.Body>

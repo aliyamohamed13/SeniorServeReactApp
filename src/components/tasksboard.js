@@ -49,7 +49,7 @@ class TasksBoard extends Component {
 	    return (
 	    	<div>
 				<center>
-					<h1>Tasks List</h1>
+					<h1>My Tasks</h1>
 				</center>
 				{this.state.userTaskInfo.map(task => (
 					<div key={task.Task_ID} className="card">
