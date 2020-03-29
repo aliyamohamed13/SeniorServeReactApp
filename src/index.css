@@ -24,3 +24,20 @@ code {
   padding-left: 30px;
   padding-right: 30px;
 }
+
+h1,
+h2 {
+  text-align: center;
+}
+#root {
+  text-align: center;
+}
+.LoginRegForm {
+  border: 1px;
+  padding: 10%;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  margin: auto auto;
+  opacity: 0.9;
+}
