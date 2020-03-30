@@ -392,6 +392,7 @@ class GeneralTasksBoard extends Component {
 			          </Button>
 			        </Modal.Footer>
 			    </Modal>
+			<h2> Task List </h2>
 			<Tasks tasks={this.state.TaskInfo} />
 		    </div>
 	    )

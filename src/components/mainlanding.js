@@ -6,6 +6,7 @@ import Reviews from "./reviews.js";
 import Records from "./records.js";
 import GeneralTasksBoard from "./generaltasksboard";
 import VolunteerLeaderBoard from "./volunteerleaderboard"
+import TasksBoardVolutneer from "./tasksboardvolunteer"
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 
@@ -35,6 +36,7 @@ class Mainlanding extends Component {
 			           	<Route path="/reviews" render={() => <Reviews username = {this.state.username}/>} />
 			           	<Route path="/generalTasksBoard" render={() => <GeneralTasksBoard username = {this.state.username}/>} />
 			           	<Route path="/volunteerLeaderBoard" render={() => <VolunteerLeaderBoard username = {this.state.username}/>} />
+			           	<Route path="/tasksboardVolunteer" render={() => <TasksBoardVolutneer username = {this.state.username}/>} />
 		           	</Switch>
 	        	</div>
 	    	</Router>
