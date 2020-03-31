@@ -20,7 +20,10 @@ class Mainlanding extends Component {
 
   componentDidMount() {
     this.setState({ username: this.props.location.state.username });
-    fetch("http://localhost:8080/api/v1/user/senior/" + this.state.username)
+    fetch(
+      "http://localhost:8080/api/v1/user/senior/" +
+        this.props.location.state.username
+    )
       .then(res => res.json())
       .then(data => {
         console.log("data is: " + data);
