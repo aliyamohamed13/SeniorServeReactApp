@@ -240,48 +240,56 @@ class GeneralTasksBoard extends Component {
 
 	    return (
 	    	<div>
-				<div style={{float: 'left'}}>
+				<div align="left" style={{paddingLeft:10, paddingRight: 20, float: 'left'}}>
 					<form onSubmit={event => this.handleSubmit(event)}>
-						<h3>filter</h3>
+						<h3 align={"center"}>Filter</h3>
 							<div>
-							<h4> City: </h4>
+							<h4 style={{marginLeft: 10}}> City: </h4>
 							{this.state.Cities.map((key => (
 								<div>
-									<label> {key}:
+									<label>
 										<input type="checkbox" onChange={(e) => this.setState({SelectedCities: [...this.state.SelectedCities, key]})} />
+										{" "}{key}
 									</label>
 								</div>
 							  )))}
 							</div>
 							<div>
-							<h4> Province: </h4>
+							<h4 style={{marginLeft: 10}} > Province: </h4>
 							{this.state.Provinces.map((key => (
 								<div>
-									<label> {key}:
+									<label>
 										<input type="checkbox" onChange={(e) => this.setState({SelectedProvinces: [...this.state.SelectedProvinces, key]})} />
+										{" "}{key}
 									</label>
 								</div>
 							  )))}
 							</div>
 							<div>
-							<h4> Preferences: </h4>
+							<h4 style={{marginLeft: 10}}> Preferences: </h4>
 							{this.state.Preferences.map((key => (
 								<div>
-									<label> {key}:
+									<label>
 										<input type="checkbox" onChange={(e) => this.setState({SelectedPreferences: [...this.state.SelectedPreferences, key]})} />
+										{" "}{key}
 									</label>
 								</div>
 							  )))}
 							</div>
-						<button type="submit"> Filter </button>
+							<div align={"center"}>
+								<button type="submit" > Filter </button>
+							</div>
+						<div style={{height : 100}}>
+
+						</div>
 					</form>
 				</div>
 
-				<div style={{float: 'left'}}>
+				<div style={{paddingRight: 10,float: 'center'}}>
 					<button type="button" onClick={this.reset}>
 						Show All Tasks
 					</button>
-
+					{"   "}
 					<button type="button" onClick={this.handleShow}>
 						Add Task
 					</button>
