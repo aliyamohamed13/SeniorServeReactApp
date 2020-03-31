@@ -129,48 +129,46 @@ class EditUserProfile extends Component {
           below and click save
         </h3>
         <Container>
-          <Row className="profile-row">
-            <h4>Username:</h4>
+          <div className="field">
+            <label>Username:</label>
             <input
               type="text"
               defaultValue={this.state.username}
               onChange={e => this.setState({ username: e.target.value })}
             />
-          </Row>
-          <Row className="profile-row">
-            <div className="profile-row-inner">
-              <h4>First Name: </h4>
-              <input
-                type="text"
-                defaultValue={this.state.firstName}
-                onChange={e => this.setState({ firstName: e.target.value })}
-              />
-            </div>
-          </Row>
-          <Row className="profile-row">
-            <h4>Last Name: </h4>
+          </div>
+          <div className="field">
+            <label>First Name: </label>
+            <input
+              type="text"
+              defaultValue={this.state.firstName}
+              onChange={e => this.setState({ firstName: e.target.value })}
+            />
+          </div>
+          <div className="field">
+            <label>Last Name: </label>
             <input
               type="text"
               defaultValue={this.state.lastName}
               onChange={e => this.setState({ lastName: e.target.value })}
             />
-          </Row>
-          <Row className="profile-row">
-            <h4>Address: </h4>
+          </div>
+          <div className="field">
+            <label>Address: </label>
             <input
               type="text"
               defaultValue={this.state.address}
               onChange={e => this.setState({ address: e.target.value })}
             />
-          </Row>
-          <Row className="profile-row">
-            <h4>Postal Code: </h4>
+          </div>
+          <div className="field">
+            <label>Postal Code: </label>
             <input
               type="text"
               defaultValue={this.state.postalCode}
               onChange={e => this.setState({ postalCode: e.target.value })}
             />
-          </Row>
+          </div>
 
           <Button color="warning" onClick={event => this.onSaveClick(event)}>
             Save Changes
