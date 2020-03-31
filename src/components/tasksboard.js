@@ -18,7 +18,6 @@ class TasksBoard extends Component {
 			userTaskInfo: [],
 			userCompletedTaskInfo: [],
 			taskToBeUpdated:[],
-			pendingTaskRequests:[],
 
 			showUpdateTask: false,
 			
@@ -52,13 +51,6 @@ class TasksBoard extends Component {
 	      .then(res => res.json())
 	      .then(data => {
 	        this.setState({ userCompletedTaskInfo: data });
-	      })
-	      .catch(console.log);
-	    //TODO: add correct endpoint which shows all of the Senior's task request
-	    fetch("http://localhost:8080/api/v1/taskrequest/allTask/username=" + this.props.username)
-	      .then(res => res.json())
-	      .then(data => {
-	        this.setState({ pendingTaskRequests: data });
 	      })
 	      .catch(console.log);
   	}
@@ -205,20 +197,6 @@ class TasksBoard extends Component {
 		    }
   	}
 
-  	handleAcceptRequest = (taskID) => {
-  		var updateUrl = "http://localhost:8080/api/v1/volunteer"
-	  	axios.post(updateUrl, {
-		    		"Username": this.props.Username,
-		    		"Task_ID": taskID,
-		    		"Date": this.getDate()
-		    		})
-		      .then(result => {
-		    		
-		    	})
-		      .catch(function(error) {
-						
-				});
-  	}
 
   	getDate = () => {
 		var date = new Date()
@@ -251,12 +229,6 @@ class TasksBoard extends Component {
 		     .then(result => {
 		     	console.log("reset!")
 		     	this.setState({ userCompletedTaskInfo: result.data });
-		     })
-		     .catch()
-		axios.get("http://localhost:8080/api/v1/taskrequest/allTask/username=" + this.props.username)
-		     .then(result => {
-		     	console.log("reset!")
-		     	this.setState({ pendingTaskRequests: result.data });
 		     })
 		     .catch()
   	}
@@ -463,28 +435,6 @@ class TasksBoard extends Component {
 			)
 		}
 
-		if (this.state.pendingTaskRequests.length === 0) {
-			pendingTasksReq = <NoTasksToDisplay />
-		} else {
-			pendingTasksReq = (
-				<div>
-				{this.state.pendingTaskRequests.map(task => (
-					<div key={task.Task_ID} className="card">
-						<div className="card-body">
-							<h5 className="card-title">{task.Description}</h5>
-							<h6 className="card-subtitle mb-2 text-muted">
-								Date: {task.Date}  Status: {task.Status}
-							</h6>
-							<p className="card-text">{task.Address} {task.City} {task.Province} {task.PostalCode}</p>
-						<button type="button" onClick={() => this.handleAcceptRequest(task.Task_ID)}>
-						Accept Request
-						</button>
-						</div>
-					</div>
-				))}
-				</div>	
-			)
-		}
 
 		if (this.state.userCompletedTaskInfo.length === 0) {
 			completedTasks = <NoTasksToDisplay />
@@ -500,12 +450,6 @@ class TasksBoard extends Component {
 				</center>
 				<div>
 					{currentTask}
-				</div>
-				<center>
-					<h1>Pending Tasks Approvals</h1>
-				</center>
-				<div>
-					{pendingTasksReq}
 				</div>
 				<center>
 					<h1>My Completed Tasks</h1>

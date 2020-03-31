@@ -51,7 +51,7 @@ class TasksBoardVolunteer extends Component {
 			<div>
 				<h1> My Requested Tasks </h1>
 					{requestedTasksStatus}
-				<h1> My Completed Tasks </h1>
+				<h1> Upcoming Accepted Tasks </h1>
 					{acceptedTasksStatus}	
 			</div>
 		)

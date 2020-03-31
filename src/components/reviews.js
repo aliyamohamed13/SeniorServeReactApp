@@ -22,7 +22,7 @@ class Reviews extends Component {
 		       this.setState({ reviewInfo: data });
 		    })
 		    .catch(console.log);
-		fetch("http://localhost:8080/api/v1/review/distinctUsers")
+		fetch("http://localhost:8080/api/v1/review/distinctUsersWithReviews")
 		    .then(res => res.json())
 		    .then(data => {
 		       this.setState({ volunteers: data });
