@@ -35,13 +35,19 @@ const NavbarSS = props => {
               <Link to="/taskboard">My Tasks</Link>
             </NavItem>
             <NavItem>
+             <Link to="/tasksboardVolunteer">Volunteer TaskBoard</Link>
+            </NavItem>
+            <NavItem>
               <Link to="/records"> Volunteer Records</Link>
             </NavItem>
             <NavItem>
               <Link to="/reviews"> Reviews</Link>
             </NavItem>
             <NavItem>
-             <Link to="/generalTasksBoard">All Tasks</Link>
+              <Link to="/generalTasksBoard">All Tasks</Link>
+            </NavItem>
+            <NavItem>
+             <Link to="/volunteerLeaderBoard">Leader Board</Link>
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>

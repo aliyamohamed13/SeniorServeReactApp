@@ -14,24 +14,27 @@ class GeneralTasksBoard extends Component {
 		super()
 		this.state = {
 			TaskInfo: [],
-// TODO populate with API calls
-			Cities: ['Toronto', 'Vancouver', 'Calgary', 'Edmonton', 'Waterloo','Quebec', 'Burnaby', 'London'],
-			Provinces: ['ON', 'BC', 'AB', 'QC'],
-			Preferences: ['Outdoors', 'Indoors', 'Labour', 'Social', 'Behind the Scenes'],
+
+			Cities: [],
+			Provinces: [],
+			Preferences: [],
 
 			SelectedCities:[],
 			SelectedProvinces:[],
 			SelectedPreferences:[],
 
-			show: false,
+			AllPreferencesForAddTask: [],
 
+			show: false,
+			// Add task form state
 			Date: "",
 	        Description: "",
 	        Num_Volunteer: "",
 	        PostalCode: "",
 	        Address: "",
 	        City: "",
-	        Province: ""
+	        Province: "",
+	        AddTaskPreferencesID: []
 		}
 	}
 
@@ -43,6 +46,26 @@ class GeneralTasksBoard extends Component {
 		       this.setState({ TaskInfo: data });
 		    })
 		    .catch(console.log);
+		fetch("http://localhost:8080/api/v1/preference/getAllPreferenceNames")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({Preferences: data})
+			})
+		fetch("http://localhost:8080/api/v1/location/getAllCities")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({Cities: data})
+			})
+		fetch("http://localhost:8080/api/v1/location/getAllProvinces")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({Provinces: data})
+			})
+		fetch("http://localhost:8080/api/v1/preference")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({AllPreferencesForAddTask: data})
+			})
 	}
 
 	handleClose = () => {
@@ -52,7 +75,10 @@ class GeneralTasksBoard extends Component {
 				       Description: "",
 				       Num_Volunteer: "",
 				       PostalCode: "",
-				       Address: ""})
+				       Address: "",
+				       City: "",
+	        		   Province: "",
+				   	   AddTaskPreferencesID:[]})
 
 	}
 
@@ -106,6 +132,7 @@ class GeneralTasksBoard extends Component {
 
 	handleAddTask = () => {
 		console.log("trying to add task")
+		console.log(this.state.AddTaskPreferencesID)
 		this.setState({CreateTime: this.getDate()})
 		if ((this.state.Date === "") ||
 		    (this.state.Description === "") ||
@@ -139,6 +166,7 @@ class GeneralTasksBoard extends Component {
 	    }
 	}
 
+// TODO: need to add additional API call for task has preferences
 	finishAddTask = () => {
 		var apiTaskPostUrl = "http://localhost:8080/api/v1/task/"
 		var randomTaskID = Math.floor(Math.random() * 1000000000)
@@ -249,10 +277,15 @@ class GeneralTasksBoard extends Component {
 					</form>
 				</div>
 
-				<div style={{float:'left'}}>
+				<div style={{float: 'left'}}>
+					<button type="button" onClick={this.reset}>
+						Show All Tasks
+					</button>
+
 					<button type="button" onClick={this.handleShow}>
 						Add Task
 					</button>
+
 					<Modal show={this.state.show} onHide={this.handleClose}>
 						<Modal.Header closeButton>
 						  <Modal.Title>Task Information</Modal.Title>
@@ -336,6 +369,21 @@ class GeneralTasksBoard extends Component {
 								  }
 								/>
 							  </FormGroup>
+							  <FormGroup style={{ marginBottom: "30px" }}>
+							  <label> Preferences: </label>
+								{this.state.AllPreferencesForAddTask.map(key => (
+									<div style={{position: "relative", left: "25px"}}>
+										<div>
+											<Input
+												type="checkbox"
+												name= {key.pref_name}
+												id= {key.pref_name}
+												onChange={(e) => this.setState({AddTaskPreferencesID: [...this.state.AddTaskPreferencesID, key.pref_ID]})}/>
+											<label> {key.pref_name}: {key.description} </label>
+										</div>
+									</div>
+								))}
+							  </FormGroup>
 							</Form>
 						</Modal.Body>
 						<Modal.Footer>
@@ -347,6 +395,7 @@ class GeneralTasksBoard extends Component {
 						  </Button>
 						</Modal.Footer>
 					</Modal>
+					<h2> Task List </h2>
 					<Tasks tasks={this.state.TaskInfo} />
 				</div>
 		    </div>

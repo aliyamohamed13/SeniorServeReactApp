@@ -7,6 +7,7 @@ class Reviews extends Component {
 		super()
 		this.state = {
 			reviewInfo: [],
+			volunteers: [],
 			volunteerUserName: "",
 			taskID: "",
 			averageRating: ""
@@ -19,6 +20,12 @@ class Reviews extends Component {
 		    .then(res => res.json())
 		    .then(data => {
 		       this.setState({ reviewInfo: data });
+		    })
+		    .catch(console.log);
+		fetch("http://localhost:8080/api/v1/review/distinctUsers")
+		    .then(res => res.json())
+		    .then(data => {
+		       this.setState({ volunteers: data });
 		    })
 		    .catch(console.log);
 	}
@@ -95,15 +102,13 @@ class Reviews extends Component {
 	    	<div>
 	    		<h3>filter</h3>
 		    	<form onSubmit={event => this.handleSubmitVolunteer(event)}>
-		    		{['volunteerUserName'].map(key => (
-		    			<div>
-			    			<label> Volunteer User Name: </label>
-							<select onChange={(e) => this.setState({ [key]: e.target.value})} key={key}>
-							  	{this.state.reviewInfo.map(({ [key]: value }) => 
-							   	<option key={value}>{value}</option>)}
-							</select>
-						</div>
-					))}
+		    		<div>
+			    		<label> Volunteer User Name: </label>
+						<select onChange={(e) => this.setState({ volunteerUserName: e.target.value})} key={'volunteerUserName'}>
+							{this.state.volunteers.map(key => (
+							   	<option key={key}>{key}</option>))}
+						</select>
+					</div>
 					<button type="submit"> Filter By Volunteer </button>
 		    	</form>
 
