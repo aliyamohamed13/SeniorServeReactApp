@@ -18,7 +18,7 @@ class GeneralTasksBoard extends Component {
 			Cities: [],
 			Provinces: [],
 			Preferences: [],
-			
+
 			SelectedCities:[],
 			SelectedProvinces:[],
 			SelectedPreferences:[],
@@ -81,7 +81,7 @@ class GeneralTasksBoard extends Component {
 				   	   AddTaskPreferencesID:[]})
 
 	}
-  	
+
   	handleShow = () => {
   		this.setState({show: true});
   		console.log(this.state.show)
@@ -90,19 +90,19 @@ class GeneralTasksBoard extends Component {
 	handleApi = (apiCall) => {
 		if (this.state.SelectedCities.length !== 0)
 		{
-			this.state.SelectedCities.forEach(function(entry) {	
+			this.state.SelectedCities.forEach(function(entry) {
 				apiCall = apiCall + "city=" + entry + "|"
 			})
 		}
 		if (this.state.SelectedProvinces.length !== 0)
 		{
-			this.state.SelectedProvinces.forEach(function(entry) {	
+			this.state.SelectedProvinces.forEach(function(entry) {
 				apiCall = apiCall + "prov=" + entry + "|"
 			})
 		}
 		if (this.state.SelectedPreferences.length !== 0)
 		{
-			this.state.SelectedPreferences.forEach(function(entry) {	
+			this.state.SelectedPreferences.forEach(function(entry) {
 				apiCall = apiCall + "pref=" + entry + "|"
 			})
 		}
@@ -161,9 +161,9 @@ class GeneralTasksBoard extends Component {
 	    			this.finishAddTask()
 	    		})
 	    		.catch(function(error) {
-					
+
 				});
-	    }		
+	    }
 	}
 
 // TODO: need to add additional API call for task has preferences
@@ -232,168 +232,180 @@ class GeneralTasksBoard extends Component {
 		       this.setState({ TaskInfo: data });
 		    })
 	}
-	
+
 
 	render() {
-	  	
-		console.log(this.state.TaskInfo)	
-		
+
+		console.log(this.state.TaskInfo)
+
 	    return (
 	    	<div>
-	    		<form onSubmit={event => this.handleSubmit(event)}>
-		    		<h3>filter</h3>
-		    			<div>
-		    			<h4> City: </h4>
-		    			{this.state.Cities.map((key => (
-		    				<div>
-		    					<label> {key}:
-		    						<input type="checkbox" onChange={(e) => this.setState({SelectedCities: [...this.state.SelectedCities, key]})} />
-		    					</label>
-						    </div>
-						  )))}
-		    			</div>
-		    			<div>
-		    			<h4> Province: </h4>
-		    			{this.state.Provinces.map((key => (
-		    				<div>
-		    					<label> {key}:
-		    						<input type="checkbox" onChange={(e) => this.setState({SelectedProvinces: [...this.state.SelectedProvinces, key]})} />
-		    					</label>
-						    </div>
-						  )))}
-		    			</div>
-						<div>
-						<h4> Preferences: </h4>
-		    			{this.state.Preferences.map((key => (
-		    				<div>
-		    					<label> {key}:
-		    						<input type="checkbox" onChange={(e) => this.setState({SelectedPreferences: [...this.state.SelectedPreferences, key]})} />
-		    					</label>
-						    </div>
-						  )))}
-		    			</div>
-					<button type="submit"> Filter </button>
-		    	</form>
-
-		    	<button type="button" onClick={this.reset}>
-        			Show All Tasks
-      			</button>
-
-		    	<button type="button" onClick={this.handleShow}>
-        			Add Task
-      			</button>
-				
-				<Modal show={this.state.show} onHide={this.handleClose}>
-			        <Modal.Header closeButton>
-			          <Modal.Title>Task Information</Modal.Title>
-			        </Modal.Header>
-			        <Modal.Body>
-			        <Form>
-			              <FormGroup style={{ marginBottom: "30px" }}>
-			                <Input
-			                  type="text"
-			                  name="Date"
-			                  id="Date"
-			                  placeholder="Date (YYYY-MM-DD)"
-			                  onChange={event =>
-			                    this.setState({ Date: event.target.value })
-			                  }
-			                />
-			              </FormGroup>{" "}
-			              <FormGroup style={{ marginBottom: "30px" }}>
-			                <Input
-			                  type="textArea"
-			                  name="Description"
-			                  id="Description"
-			                  placeholder="Description"
-			                  onChange={event =>
-			                    this.setState({ Description: event.target.value })
-			                  }
-			                />
-			              </FormGroup>
-			              <FormGroup style={{ marginBottom: "30px" }}>
-			                <Input
-			                  type="text"
-			                  name="Num_Volunteer"
-			                  id="Num_Volunteer"
-			                  placeholder="Number of Volunteers Required"
-			                  onChange={event =>
-			                    this.setState({ Num_Volunteer: event.target.value })
-			                  }
-			                />
-			              </FormGroup>
-			              <FormGroup style={{ marginBottom: "30px" }}>
-			                <Input
-			                  type="text"
-			                  name="Address"
-			                  id="Address"
-			                  placeholder="Address"
-			                  onChange={event =>
-			                    this.setState({ Address: event.target.value })
-			                  }
-			                />
-			              </FormGroup>
-			               <FormGroup style={{ marginBottom: "30px" }}>
-			                <Input
-			                  type="text"
-			                  name="City"
-			                  id="City"
-			                  placeholder="City"
-			                  onChange={event =>
-			                    this.setState({ City: event.target.value })
-			                  }
-			                />
-			              </FormGroup>
-			              <FormGroup style={{ marginBottom: "30px" }}>
-			                <Input
-			                  type="text"
-			                  name="Province"
-			                  id="Province"
-			                  placeholder="Province"
-			                  onChange={event =>
-			                    this.setState({ Province: event.target.value })
-			                  }
-			                />
-			              </FormGroup>
-			              <FormGroup style={{ marginBottom: "30px" }}>
-			                <Input
-			                  type="text"
-			                  name="PostalCode"
-			                  id="postaPostalCodelcode"
-			                  placeholder="Postal Code"
-			                  onChange={event =>
-			                    this.setState({ PostalCode: event.target.value })
-			                  }
-			                />
-			              </FormGroup>
-			              <FormGroup style={{ marginBottom: "30px" }}>
-			              <label> Preferences: </label>
-			              	{this.state.AllPreferencesForAddTask.map(key => (
-				    			<div style={{position: "relative", left: "25px"}}>
-					    			<div>
-										<Input 
-											type="checkbox"
-							                name= {key.pref_name}
-							                id= {key.pref_name}
-											onChange={(e) => this.setState({AddTaskPreferencesID: [...this.state.AddTaskPreferencesID, key.pref_ID]})}/>
-										<label> {key.pref_name}: {key.description} </label>
-									</div>
+				<div align="left" style={{paddingLeft:10, paddingRight: 20, float: 'left'}}>
+					<form onSubmit={event => this.handleSubmit(event)}>
+						<h3 align={"center"}>Filter</h3>
+							<div>
+							<h4 style={{marginLeft: 10}}> City: </h4>
+							{this.state.Cities.map((key => (
+								<div>
+									<label>
+										<input type="checkbox" onChange={(e) => this.setState({SelectedCities: [...this.state.SelectedCities, key]})} />
+										{" "}{key}
+									</label>
 								</div>
-							))}
-			              </FormGroup>
-			            </Form>
-			        </Modal.Body>
-			        <Modal.Footer>
-			          <Button variant="secondary" onClick={this.handleClose}>
-			            Close
-			          </Button>
-			          <Button variant="primary" onClick={this.handleAddTask}>
-			            Create Task
-			          </Button>
-			        </Modal.Footer>
-			    </Modal>
-			<h2> Task List </h2>
-			<Tasks tasks={this.state.TaskInfo} />
+							  )))}
+							</div>
+							<div>
+							<h4 style={{marginLeft: 10}} > Province: </h4>
+							{this.state.Provinces.map((key => (
+								<div>
+									<label>
+										<input type="checkbox" onChange={(e) => this.setState({SelectedProvinces: [...this.state.SelectedProvinces, key]})} />
+										{" "}{key}
+									</label>
+								</div>
+							  )))}
+							</div>
+							<div>
+							<h4 style={{marginLeft: 10}}> Preferences: </h4>
+							{this.state.Preferences.map((key => (
+								<div>
+									<label>
+										<input type="checkbox" onChange={(e) => this.setState({SelectedPreferences: [...this.state.SelectedPreferences, key]})} />
+										{" "}{key}
+									</label>
+								</div>
+							  )))}
+							</div>
+							<div align={"center"}>
+								<button type="submit" > Filter </button>
+							</div>
+						<div style={{height : 100}}>
+
+						</div>
+					</form>
+				</div>
+
+				<div style={{paddingRight: 10,float: 'center'}}>
+					<button type="button" onClick={this.reset}>
+						Show All Tasks
+					</button>
+					{"   "}
+					<button type="button" onClick={this.handleShow}>
+						Add Task
+					</button>
+
+					<Modal show={this.state.show} onHide={this.handleClose}>
+						<Modal.Header closeButton>
+						  <Modal.Title>Task Information</Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+						<Form>
+							  <FormGroup style={{ marginBottom: "30px" }}>
+								<Input
+								  type="text"
+								  name="Date"
+								  id="Date"
+								  placeholder="Date (YYYY-MM-DD)"
+								  onChange={event =>
+									this.setState({ Date: event.target.value })
+								  }
+								/>
+							  </FormGroup>{" "}
+							  <FormGroup style={{ marginBottom: "30px" }}>
+								<Input
+								  type="textArea"
+								  name="Description"
+								  id="Description"
+								  placeholder="Description"
+								  onChange={event =>
+									this.setState({ Description: event.target.value })
+								  }
+								/>
+							  </FormGroup>
+							  <FormGroup style={{ marginBottom: "30px" }}>
+								<Input
+								  type="text"
+								  name="Num_Volunteer"
+								  id="Num_Volunteer"
+								  placeholder="Number of Volunteers Required"
+								  onChange={event =>
+									this.setState({ Num_Volunteer: event.target.value })
+								  }
+								/>
+							  </FormGroup>
+							  <FormGroup style={{ marginBottom: "30px" }}>
+								<Input
+								  type="text"
+								  name="Address"
+								  id="Address"
+								  placeholder="Address"
+								  onChange={event =>
+									this.setState({ Address: event.target.value })
+								  }
+								/>
+							  </FormGroup>
+							   <FormGroup style={{ marginBottom: "30px" }}>
+								<Input
+								  type="text"
+								  name="City"
+								  id="City"
+								  placeholder="City"
+								  onChange={event =>
+									this.setState({ City: event.target.value })
+								  }
+								/>
+							  </FormGroup>
+							  <FormGroup style={{ marginBottom: "30px" }}>
+								<Input
+								  type="text"
+								  name="Province"
+								  id="Province"
+								  placeholder="Province"
+								  onChange={event =>
+									this.setState({ Province: event.target.value })
+								  }
+								/>
+							  </FormGroup>
+							  <FormGroup style={{ marginBottom: "30px" }}>
+								<Input
+								  type="text"
+								  name="PostalCode"
+								  id="postaPostalCodelcode"
+								  placeholder="Postal Code"
+								  onChange={event =>
+									this.setState({ PostalCode: event.target.value })
+								  }
+								/>
+							  </FormGroup>
+							  <FormGroup style={{ marginBottom: "30px" }}>
+							  <label> Preferences: </label>
+								{this.state.AllPreferencesForAddTask.map(key => (
+									<div style={{position: "relative", left: "25px"}}>
+										<div>
+											<Input
+												type="checkbox"
+												name= {key.pref_name}
+												id= {key.pref_name}
+												onChange={(e) => this.setState({AddTaskPreferencesID: [...this.state.AddTaskPreferencesID, key.pref_ID]})}/>
+											<label> {key.pref_name}: {key.description} </label>
+										</div>
+									</div>
+								))}
+							  </FormGroup>
+							</Form>
+						</Modal.Body>
+						<Modal.Footer>
+						  <Button variant="secondary" onClick={this.handleClose}>
+							Close
+						  </Button>
+						  <Button variant="primary" onClick={this.handleAddTask}>
+							Create Task
+						  </Button>
+						</Modal.Footer>
+					</Modal>
+					<h2> Task List </h2>
+					<Tasks tasks={this.state.TaskInfo} />
+				</div>
 		    </div>
 	    )
 	}
