@@ -62,22 +62,56 @@ class EditUserProfile extends Component {
     //     console.log("user deleted: ", user)
     // })
     axios
-      .put(apiBaseUrl + this.state.username, {
-        username: this.state.username,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        address: this.state.address,
-        postalCode: this.state.postalCode
-      })
-      .then(function(response) {
-        if (response.status === 200) {
-          console.log("updated successfully");
-        } else {
-        }
-      })
+      .all([
+        axios.post("http://localhost:8080/api/v1/location/", {
+          postalCode: this.state.postalCode,
+          address: this.state.address,
+          city: "",
+          province: ""
+        }),
+        axios.put(apiBaseUrl + this.state.username, {
+          username: this.state.username,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          address: this.state.address,
+          postalCode: this.state.postalCode
+        })
+      ])
+      .then(
+        axios.spread((postres, putres) => {
+          if (putres.status === 200) {
+            console.log("updated successfully");
+          } else {
+          }
+        })
+      )
       .catch(err => {
         console.log(err);
       });
+
+    // axios.post("http://localhost:8080/api/v1/location/", {
+    //   postalCode: this.state.postalCode,
+    //   address: this.state.address,
+    //   city: "",
+    //   province: ""
+    // });
+    // axios
+    //   .put(apiBaseUrl + this.state.username, {
+    //     username: this.state.username,
+    //     firstName: this.state.firstName,
+    //     lastName: this.state.lastName,
+    //     address: this.state.address,
+    //     postalCode: this.state.postalCode
+    //   })
+    //   .then(function(response) {
+    //     if (response.status === 200) {
+    //       console.log("updated successfully");
+    //     } else {
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
 
   onDeleteClick(event) {

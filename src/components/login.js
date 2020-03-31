@@ -42,46 +42,54 @@ class Login extends Component {
     console.log(this.state.address);
     console.log(this.state.postalcode);
     var self = this;
-
-    if (
-      (this.state.regUsername === "") |
-      (this.state.firstName === "") |
-      (this.state.lastName === "") |
-      (this.state.address === "") |
-      (this.state.postalcode === "")
-    ) {
-    } else {
-      axios
-        .post(apiBaseUrl, {
-          username: this.state.regUsername,
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          address: this.state.address,
-          postalCode: this.state.postalcode
-        })
-        .then(function(response) {
-          console.log(apiBaseUrl);
-          console.log(response);
-          console.log(response.data);
-          if (response.status === 200) {
-            if (response.data === "") {
-              console.log("Registration successful");
-              self.setState({username: self.state.regUsername})
-              self.setState({ redirect: true });
-            } else {
-              alert(
-                "This user may already exist, please try again or try logging in"
-              );
-            }
-          } else {
-            console.log("something went wrong");
-            alert("Something went wrong, please try again");
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
+    axios
+      .post("http://localhost:8080/api/v1/location/", {
+        postalCode: this.state.postalCode,
+        address: this.state.address,
+        city: "",
+        province: ""
+      })
+      .then(function(response) {
+        if (
+          (this.state.regUsername === "") |
+          (this.state.firstName === "") |
+          (this.state.lastName === "") |
+          (this.state.address === "") |
+          (this.state.postalcode === "")
+        ) {
+        } else {
+          axios
+            .post(apiBaseUrl, {
+              username: this.state.regUsername,
+              firstName: this.state.firstName,
+              lastName: this.state.lastName,
+              address: this.state.address,
+              postalCode: this.state.postalcode
+            })
+            .then(function(response1) {
+              console.log(apiBaseUrl);
+              console.log(response1);
+              console.log(response1.data);
+              if (response1.status === 200) {
+                if (response1.data === "") {
+                  console.log("Registration successful");
+                  self.setState({ username: self.state.regUsername });
+                  self.setState({ redirect: true });
+                } else {
+                  alert(
+                    "This user may already exist, please try again or try logging in"
+                  );
+                }
+              } else {
+                console.log("something went wrong");
+                alert("Something went wrong, please try again");
+              }
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        }
+      });
   }
 
   handleClick(event) {
