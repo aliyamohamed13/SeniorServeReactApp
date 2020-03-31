@@ -64,17 +64,17 @@ class EditUserProfile extends Component {
     axios
       .all([
         axios.post("http://localhost:8080/api/v1/location/", {
-          postalCode: this.state.postalCode,
-          address: this.state.address,
-          city: "",
-          province: ""
+          PostalCode: this.state.postalCode,
+          Address: this.state.address,
+          City: "",
+          Province: ""
         }),
         axios.put(apiBaseUrl + this.state.username, {
           username: this.state.username,
           firstName: this.state.firstName,
           lastName: this.state.lastName,
-          address: this.state.address,
-          postalCode: this.state.postalCode
+          postalCode: this.state.postalCode,
+          address: this.state.address
         })
       ])
       .then(

@@ -44,27 +44,27 @@ class Login extends Component {
     var self = this;
     axios
       .post("http://localhost:8080/api/v1/location/", {
-        postalCode: this.state.postalCode,
-        address: this.state.address,
-        city: "",
-        province: ""
+        PostalCode: this.state.postalCode,
+        Address: this.state.address,
+        City: "",
+        Province: ""
       })
       .then(function(response) {
         if (
-          (this.state.regUsername === "") |
-          (this.state.firstName === "") |
-          (this.state.lastName === "") |
-          (this.state.address === "") |
-          (this.state.postalcode === "")
+          (self.state.regUsername === "") |
+          (self.state.firstName === "") |
+          (self.state.lastName === "") |
+          (self.state.address === "") |
+          (self.state.postalcode === "")
         ) {
         } else {
           axios
             .post(apiBaseUrl, {
-              username: this.state.regUsername,
-              firstName: this.state.firstName,
-              lastName: this.state.lastName,
-              address: this.state.address,
-              postalCode: this.state.postalcode
+              username: self.state.regUsername,
+              firstName: self.state.firstName,
+              lastName: self.state.lastName,
+              postalCode: self.state.postalcode,
+              address: self.state.address
             })
             .then(function(response1) {
               console.log(apiBaseUrl);
