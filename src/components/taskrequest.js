@@ -22,15 +22,6 @@ class TaskRequest extends Component {
 	      })
 	}
 
-	reset = () => {
-		axios.get("http://localhost:8080/api/v1/taskrequest/allTask/username=" + this.props.username)
-		     .then(result => {
-		     	console.log("reset!")
-		     	this.setState({ pendingTaskRequests: result.data });
-		     })
-		     .catch()
-	}
-
 	render() {
 		let pendingTasksReq
 

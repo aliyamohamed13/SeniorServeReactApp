@@ -33,7 +33,7 @@ class Records extends Component {
   		if (this.state.volunteerRecord.length === 0) {
   			recordStatus = (<h4> -- No Records To Be Displayed -- </h4>)
   		} else {
-  			recordStatus = <VolunteerRecord records = {this.state.volunteerRecord}/>
+  			recordStatus = <VolunteerRecord records={this.state.volunteerRecord}/>
   		}
 
     	return (

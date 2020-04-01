@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import {Modal, Button} from 'react-bootstrap';
-import Task from './tasks';
+import MakeReview from './makereview';
 import NoTasksToDisplay from './notaskstodisplay';
 import {
   Form,
@@ -258,9 +258,11 @@ class TasksBoard extends Component {
 						<button type="button" onClick={() => this.handleDeleteTask(task.Task_ID)}>
 						Delete Task
 						</button>
+						{"   "}
 						<button type="button" onClick={() => this.handleUpdateTask(task)}>
 						Update Task
 						</button>
+						{"   "}
 						<button type="button" onClick={() => this.handleMarkComplete(task)}>
 						Mark Task as Complete
 						</button>
@@ -440,7 +442,7 @@ class TasksBoard extends Component {
 			completedTasks = <NoTasksToDisplay />
 
 		} else {
-			completedTasks = <Task tasks = {this.state.userCompletedTaskInfo}/>
+			completedTasks = <MakeReview username={this.props.username} tasks={this.state.userCompletedTaskInfo}/>
 		}
 
 	    return (

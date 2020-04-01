@@ -108,8 +108,9 @@ class Reviews extends Component {
 							{this.state.volunteers.map(key => (
 							   	<option key={key}>{key}</option>))}
 						</select>
+						{"   "}
+						<button type="submit"> Filter By Volunteer </button>
 					</div>
-					<button type="submit"> Filter By Volunteer </button>
 		    	</form>
 
 		    	<form onSubmit={event => this.handleSubmitTask(event)}>
@@ -120,9 +121,10 @@ class Reviews extends Component {
 							  	{this.state.reviewInfo.map(({ [key]: value }) => 
 							   	<option key={value}>{value}</option>)}
 							</select>
+							{"   "}
+							<button type="submit"> Filter By Task ID </button>
 						</div>
 					))}
-					<button type="submit"> Filter By Task ID </button>
 		    	</form>
 		    	<button type="button" onClick = {this.handleReset}> Reset </button>
 		    <div id="filterStats" style={{display: "none"}}>

@@ -239,8 +239,8 @@ class GeneralTasksBoard extends Component {
 		console.log(this.state.TaskInfo)
 
 	    return (
-	    	<div>
-				<div align="left" style={{paddingLeft:10, paddingRight: 20, float: 'left'}}>
+	    	<div style={{display: 'table', width: '90%'}}>
+				<div align="left" style={{paddingLeft: '5%', paddingRight: 20, float: 'left', width: '30%'}}>
 					<form onSubmit={event => this.handleSubmit(event)}>
 						<h3 align={"center"}>Filter</h3>
 							<div>
@@ -285,7 +285,7 @@ class GeneralTasksBoard extends Component {
 					</form>
 				</div>
 
-				<div style={{paddingRight: 10,float: 'center'}}>
+				<div style={{paddingRight: 10, float: 'right', width: '70%'}}>
 					<button type="button" onClick={this.reset}>
 						Show All Tasks
 					</button>

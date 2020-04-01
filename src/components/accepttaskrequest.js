@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import axios from "axios";
+import React, { Component } from "react";
 
 class TaskRequest extends Component {
 
@@ -12,7 +12,6 @@ class TaskRequest extends Component {
 
 	componentDidMount() {
 		console.log(this.props)
-		//TODO: add correct endpoint which shows all of the Senior's task request
 	    fetch("http://localhost:8080/api/v1/taskrequest/allRequestUser/task_id=" + this.props.taskID)
 	      .then(res => res.json())
 	      .then(data => {
@@ -69,7 +68,14 @@ class TaskRequest extends Component {
 
 	render() {
 		console.log(this.state.pendingTaskRequests)
-		return (
+
+		let acceptStatus
+
+		if (this.state.pendingTaskRequests.length === 0) {
+			acceptStatus = (<h6> -- No Requests Pending For This Task -- </h6>)
+		} else {
+
+			acceptStatus = (
 				<div>
 					{this.state.pendingTaskRequests.map(request => (
 						<div key={request.username}>
@@ -81,6 +87,14 @@ class TaskRequest extends Component {
 							</button>
 						</div>
 						))}
+				</div>	
+			)
+		}
+
+
+		return (
+				<div>
+					{acceptStatus}
 				</div>	
 		)
 

@@ -50,6 +50,9 @@ const NavbarSS = props => {
               <Link to="/generalTasksBoard">All Tasks</Link>
             </NavItem>
             <NavItem>
+              <Link to="/volunteerTasksBoard">All Tasks Volunteer</Link>
+            </NavItem>
+            <NavItem>
              <Link to="/volunteerLeaderBoard">Leader Board</Link>
             </NavItem>
           </Nav>
