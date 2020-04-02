@@ -58,9 +58,7 @@ const NavbarSS = props => {
           </Nav>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <Link className="nav-link active" className="logout" href="/">
-                logout
-              </Link>
+              <a href="http://localhost:3000/">logout</a>
             </NavItem>
           </Nav>
         </Collapse>
