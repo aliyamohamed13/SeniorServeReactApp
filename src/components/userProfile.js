@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Nav from "./nav.js";
 import axios from "axios";
 import {
   BrowserRouter as Router,
@@ -19,13 +18,6 @@ import {
 } from "reactstrap";
 var apiBaseUrl = "http://localhost:8080/api/v1/user/";
 
-// const EditUserProfile = props => {
-//   console.log("about", JSON.stringify(props));
-//   console.log(props.username);
-//   return (
-//   <div></div>
-//   );
-// };
 class EditUserProfile extends Component {
   constructor(props) {
     super(props);
@@ -56,63 +48,64 @@ class EditUserProfile extends Component {
       .catch(console.log);
   }
 
-  onSaveClick(event) {
-    //  axios.delete(apiBaseUrl, user)
-    // .then((user) => {
-    //     console.log("user deleted: ", user)
-    // })
-    axios
-      .all([
-        axios.post("http://localhost:8080/api/v1/location/", {
+  handleRegisterLocation = () => {
+    if (
+      this.state.username === "" ||
+      this.state.firstName === "" ||
+      this.state.lastName === "" ||
+      this.state.address === "" ||
+      this.state.postalCode === ""
+    ) {
+    } else {
+      console.log(this.state.username);
+      console.log(this.state.firstName);
+      console.log(this.state.lastName);
+      console.log(this.state.address);
+      console.log(this.state.postalCode);
+      axios
+        .post("http://localhost:8080/api/v1/location/", {
           PostalCode: this.state.postalCode,
           Address: this.state.address,
           City: "",
           Province: ""
-        }),
-        axios.put(apiBaseUrl + this.state.username, {
-          username: this.state.username,
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          postalCode: this.state.postalCode,
-          address: this.state.address
         })
-      ])
-      .then(
-        axios.spread((postres, putres) => {
-          if (putres.status === 200) {
-            console.log("updated successfully");
-          } else {
-          }
+        .then(result => {
+          console.log(result);
+          this.updateUser();
         })
-      )
-      .catch(err => {
-        console.log(err);
-      });
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+  };
 
-    // axios.post("http://localhost:8080/api/v1/location/", {
-    //   postalCode: this.state.postalCode,
-    //   address: this.state.address,
-    //   city: "",
-    //   province: ""
-    // });
-    // axios
-    //   .put(apiBaseUrl + this.state.username, {
-    //     username: this.state.username,
-    //     firstName: this.state.firstName,
-    //     lastName: this.state.lastName,
-    //     address: this.state.address,
-    //     postalCode: this.state.postalCode
-    //   })
-    //   .then(function(response) {
-    //     if (response.status === 200) {
-    //       console.log("updated successfully");
-    //     } else {
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-  }
+  updateUser = () => {
+    axios
+      .put(apiBaseUrl + this.state.username, {
+        username: this.state.username,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        postalCode: this.state.postalCode,
+        address: this.state.address
+      })
+      .then(response => {
+        console.log(response);
+        console.log(response.data);
+        if (response.status === 200) {
+          if (response.data === "") {
+            console.log("Update successful");
+          } else {
+            alert("Please try again");
+          }
+        } else {
+          console.log("something went wrong");
+          alert("Something went wrong, please try again");
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
 
   onDeleteClick(event) {
     var self = this;
@@ -130,14 +123,6 @@ class EditUserProfile extends Component {
         console.log(err);
       });
   }
-
-  //   state = {
-  //     user: ""
-  //   };
-
-  //   componentDidMount() {
-  //     const { handle } = this.props.username;
-  //   }
 
   render() {
     if (this.state.redirect) {
@@ -163,14 +148,6 @@ class EditUserProfile extends Component {
           below and click save
         </h3>
         <Container>
-          <div className="field">
-            <label>Username:</label>
-            <input
-              type="text"
-              defaultValue={this.state.username}
-              onChange={e => this.setState({ username: e.target.value })}
-            />
-          </div>
           <div className="field">
             <label>First Name: </label>
             <input
@@ -204,7 +181,7 @@ class EditUserProfile extends Component {
             />
           </div>
 
-          <Button color="warning" onClick={event => this.onSaveClick(event)}>
+          <Button color="warning" onClick={this.handleRegisterLocation}>
             Save Changes
           </Button>
           <Button color="danger" onClick={event => this.onDeleteClick(event)}>
