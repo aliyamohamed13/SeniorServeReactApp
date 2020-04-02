@@ -73,8 +73,8 @@ class MakeReview extends Component {
 			<div>
 				<div>
 					{this.props.tasks.map(task => (
-						<div>
-							<div key={task.Task_ID} className="card">
+						<div key={task.Task_ID} >
+							<div className="card">
 					        	<div className="card-body">
 						            <h5 className="card-title">{task.Description}</h5>
 						            <h6 className="card-subtitle mb-2 text-muted">

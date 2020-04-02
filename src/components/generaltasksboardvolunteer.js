@@ -123,7 +123,7 @@ class GeneralTasksBoardVolunteer extends Component {
 							<div>
 							<h4 style={{marginLeft: 10}}> City: </h4>
 							{this.state.Cities.map((key => (
-								<div>
+								<div key={key}>
 									<label>
 										<input type="checkbox" onChange={(e) => this.setState({SelectedCities: [...this.state.SelectedCities, key]})} />
 										{" "}{key}
@@ -134,7 +134,7 @@ class GeneralTasksBoardVolunteer extends Component {
 							<div>
 							<h4 style={{marginLeft: 10}} > Province: </h4>
 							{this.state.Provinces.map((key => (
-								<div>
+								<div key={key}>
 									<label>
 										<input type="checkbox" onChange={(e) => this.setState({SelectedProvinces: [...this.state.SelectedProvinces, key]})} />
 										{" "}{key}
@@ -145,7 +145,7 @@ class GeneralTasksBoardVolunteer extends Component {
 							<div>
 							<h4 style={{marginLeft: 10}}> Preferences: </h4>
 							{this.state.Preferences.map((key => (
-								<div>
+								<div key={key}>
 									<label>
 										<input type="checkbox" onChange={(e) => this.setState({SelectedPreferences: [...this.state.SelectedPreferences, key]})} />
 										{" "}{key}

@@ -88,6 +88,7 @@ class Reviews extends Component {
 	}
 
 	handleReset = () => {
+		this.setState({reviewInfo: []})
 		fetch("http://localhost:8080/api/v1/review/")
 		    .then(res => res.json())
 		    .then(data => {
@@ -114,17 +115,15 @@ class Reviews extends Component {
 		    	</form>
 
 		    	<form onSubmit={event => this.handleSubmitTask(event)}>
-		    		{['taskID'].map(key => (
 		    			<div>
 			    			<label> Task ID: </label>
-							<select onChange={(e) => this.setState({ [key]: e.target.value})} key={key}>
-							  	{this.state.reviewInfo.map(({ [key]: value }) => 
-							   	<option key={value}>{value}</option>)}
+							<select onChange={(e) => this.setState({ 'taskID': e.target.value})}>
+							  	{this.state.reviewInfo.map(({ 'taskID': value, 'reviewID':key }) => 
+							   	<option key={key}>{value}</option>)}
 							</select>
 							{"   "}
 							<button type="submit"> Filter By Task ID </button>
 						</div>
-					))}
 		    	</form>
 		    	<button type="button" onClick = {this.handleReset}> Reset </button>
 		    <div id="filterStats" style={{display: "none"}}>
@@ -134,7 +133,7 @@ class Reviews extends Component {
 		        <h1>Review</h1>
 		     </center>
 		      {this.state.reviewInfo.map(review => (
-		        <div key={review.taskID} className="card">
+		        <div key={review.taskID+review.volunteerUserName} className="card">
 		          <div className="card-body">
 		            <h5 className="card-title">{review.description}</h5>
 		            <h6 className="card-subtitle mb-2 text-muted">

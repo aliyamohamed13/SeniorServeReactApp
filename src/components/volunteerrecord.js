@@ -9,7 +9,7 @@ class VolunteerRecords extends Component {
 		return (
 			<div>
 				{this.props.records.map(record => (
-					<div className="card">
+					<div key={record.record_ID} className="card">
 						<div className="card-body">
 							<div className="card-title">
 							Task: {record.description}
