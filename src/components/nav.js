@@ -23,9 +23,9 @@ const NavbarSS = props => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar className="change" dark expand="md">
         <NavbarBrand> seniorServe</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+        <NavbarToggler className="toggle-nav" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-left" navbar>
             <NavItem>
@@ -58,6 +58,15 @@ const NavbarSS = props => {
           </Nav>
           <Nav className="ml-auto" navbar>
             <NavItem>
+              <Link
+                className="nav-link active"
+                className="userProfile"
+                to="/userprofile"
+              >
+                User Profile
+              </Link>
+            </NavItem>
+            <NavItem>            
               <a href="http://localhost:3000/">logout</a>
             </NavItem>
           </Nav>
@@ -69,67 +78,3 @@ const NavbarSS = props => {
 
 export default NavbarSS;
 
-// class NavbarSS extends Component {
-//   render() {
-//     return (
-//       <div>
-//         {/* {this.renderRedirect()} */}
-//         <Navbar className="change" dark expand="md">
-//           <NavbarBrand href="/home"> seniorServe</NavbarBrand>
-//           {/* <NavbarToggler onClick={this.toggle} /> */}
-//           <Collapse
-//             /* isOpen={this.state.isOpen}  */
-
-//             navbar
-//           >
-//             <Nav className="ml-left" navbar>
-//               <NavItem>
-//                 <NavLink href="/mainlanding"> Home</NavLink>
-//               </NavItem>
-//               <NavItem>
-//                 <NavLink href="/taskboard"> Taskboard</NavLink>
-//               </NavItem>
-//               <NavItem>
-//                 <NavLink href="/records"> Volunteer Records</NavLink>
-//               </NavItem>
-//               <NavItem>
-//                 <NavLink href="/reviews"> Reviews</NavLink>
-//               </NavItem>
-//             </Nav>
-//             <Nav className="ml-auto" navbar>
-//               <NavItem>
-//                 <NavLink
-//                   className="nav-link active"
-//                   className="logout"
-//                   href="/"
-//                 >
-//                   logout
-//                 </NavLink>
-//               </NavItem>
-//             </Nav>
-//           </Collapse>
-//         </Navbar>
-//       </div>
-
-//       //  render( props ) {
-//       //   	console.log(this.props)
-// //       //     return (
-//           	<ul>
-//           		<Link to="/mainlanding">
-//           			<li>Home</li>
-//           		</Link>
-//       			<Link to="/taskboard">
-//           			<li>Taskboard</li>
-//           		</Link>
-//           		<Link to="/records">
-//           			<li>Volunteer Records</li>
-//           		</Link>
-//           		<Link to="/reviews">
-//           			<li>Reviews</li>
-//           		</Link>
-//           	</ul>
-//     );
-//   }
-// }
-
-// export default NavbarSS;

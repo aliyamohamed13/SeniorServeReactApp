@@ -31,7 +31,9 @@ class Login extends Component {
       firstName: "",
       lastName: "",
       address: "",
-      postalCode: ""
+      postalCode: "",
+      city: "",
+      province: ""
     };
   }
 
@@ -40,48 +42,123 @@ class Login extends Component {
     console.log(this.state.firstName);
     console.log(this.state.lastName);
     console.log(this.state.address);
-    console.log(this.state.postalcode);
+    console.log(this.state.postalCode);
     var self = this;
+    axios
+      .post("http://localhost:8080/api/v1/location/", {
+        PostalCode: this.state.postalCode,
+        Address: this.state.address,
+        City: this.state.city,
+        Province: this.state.province
+      })
+      .then(function(response) {
+        if (
+          response.status !== 200 ||
+          self.state.regUsername === "" ||
+          self.state.firstName === "" ||
+          self.state.lastName === "" ||
+          self.state.address === "" ||
+          self.state.postalCode === ""
+        ) {
+        } else {
+          axios
+            .post(apiBaseUrl, {
+              username: self.state.regUsername,
+              firstName: self.state.firstName,
+              lastName: self.state.lastName,
+              postalCode: self.state.postalCode,
+              address: self.state.address
+            })
+            .then(function(response1) {
+              console.log(apiBaseUrl);
+              console.log(response1);
+              console.log(response1.data);
+              if (response1.status === 200) {
+                if (response1.data === "") {
+                  console.log("Registration successful");
+                  self.setState({ username: self.state.regUsername });
+                  self.setState({ redirect: true });
+                } else {
+                  alert(
+                    "This user may already exist, please try again or try logging in"
+                  );
+                }
+              } else {
+                console.log("something went wrong");
+                alert("Something went wrong, please try again");
+              }
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        }
+      });
+  }
 
+  handleRegisterLocation = () => {
     if (
-      (this.state.regUsername === "") |
-      (this.state.firstName === "") |
-      (this.state.lastName === "") |
-      (this.state.address === "") |
-      (this.state.postalcode === "")
+      this.state.regUsername === "" ||
+      this.state.firstName === "" ||
+      this.state.lastName === "" ||
+      this.state.address === "" ||
+      this.state.postalCode === "" ||
+      this.state.city === "" ||
+      this.state.province === ""
     ) {
     } else {
+      console.log("here are attributes");
+      console.log(this.state.address);
+      console.log(this.state.city);
+      console.log(this.state.province);
+      console.log(this.state.postalCode);
       axios
-        .post(apiBaseUrl, {
-          username: this.state.regUsername,
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          address: this.state.address,
-          postalCode: this.state.postalcode
+        .post("http://localhost:8080/api/v1/location/", {
+          PostalCode: this.state.postalCode,
+          Address: this.state.address,
+          City: this.state.city,
+          Province: this.state.province
         })
-        .then(function(response) {
-          console.log(apiBaseUrl);
-          console.log(response);
-          console.log(response.data);
-          if (response.status === 200) {
-            if (response.data === "") {
-              console.log("Registration successful");
-              self.setState({ redirect: true });
-            } else {
-              alert(
-                "This user may already exist, please try again or try logging in"
-              );
-            }
-          } else {
-            console.log("something went wrong");
-            alert("Something went wrong, please try again");
-          }
+        .then(result => {
+          console.log(result);
+          this.handleRegisterUser();
         })
         .catch(function(error) {
           console.log(error);
         });
     }
-  }
+  };
+
+  handleRegisterUser = () => {
+    axios
+      .post(apiBaseUrl, {
+        username: this.state.regUsername,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        postalCode: this.state.postalCode,
+        address: this.state.address
+      })
+      .then(response => {
+        console.log(response);
+        console.log(response.data);
+        if (response.status === 200) {
+          if (response.data === "") {
+            console.log("Registration successful, redirecting");
+            this.setState({ username: this.state.regUsername });
+            this.setState({ redirect: true });
+          } else {
+            alert(
+              "This user may already exist, please try again or try logging in"
+            );
+          }
+        } else {
+          console.log("something went wrong");
+          alert("Something went wrong, please try again");
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
 
   handleClick(event) {
     console.log(this.state.username);
@@ -157,11 +234,6 @@ class Login extends Component {
                   />
                 </FormGroup>
                 <Button
-                  style={{
-                    marginBottom: "30px",
-                    backgroundColor: "white",
-                    color: "black"
-                  }}
                   className="buttonOr"
                   onClick={event => this.handleClick(event)}
                 >
@@ -175,7 +247,7 @@ class Login extends Component {
             <br />
             <h3 style={{ marginBottom: "30px" }}>Register:</h3>
             <Form>
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="regUsername"
@@ -186,7 +258,7 @@ class Login extends Component {
                   }
                 />
               </FormGroup>{" "}
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="firstName"
@@ -197,7 +269,7 @@ class Login extends Component {
                   }
                 />
               </FormGroup>
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="lastName"
@@ -208,7 +280,7 @@ class Login extends Component {
                   }
                 />
               </FormGroup>
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="address"
@@ -219,25 +291,42 @@ class Login extends Component {
                   }
                 />
               </FormGroup>
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
+                <Input
+                  type="text"
+                  name="city"
+                  id="city"
+                  placeholder="City"
+                  onChange={event =>
+                    this.setState({ city: event.target.value })
+                  }
+                />
+              </FormGroup>
+              <FormGroup className="registerForm">
+                <Input
+                  type="text"
+                  name="province"
+                  id="province"
+                  placeholder="Province"
+                  onChange={event =>
+                    this.setState({ province: event.target.value })
+                  }
+                />
+              </FormGroup>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="postalcode"
                   id="postalcode"
                   placeholder="Postal Code"
                   onChange={event =>
-                    this.setState({ postalcode: event.target.value })
+                    this.setState({ postalCode: event.target.value })
                   }
                 />
               </FormGroup>
               <Button
-                style={{
-                  marginBottom: "30px",
-                  backgroundColor: "white",
-                  color: "black"
-                }}
                 className="buttonOr"
-                onClick={event => this.handleRegister(event)}
+                onClick={this.handleRegisterLocation}
               >
                 Submit
               </Button>

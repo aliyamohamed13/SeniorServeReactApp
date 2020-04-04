@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import VolunteerRecord from "./volunteerrecord"
 import axios from "axios";
 
-
 class Records extends Component {
 
 	constructor() {
