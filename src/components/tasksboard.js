@@ -35,7 +35,9 @@ class TasksBoard extends Component {
 
 	        showMarkComplete: false,
 	        completeDate: "",
-	        monetaryAmount: ""
+	        monetaryAmount: "",
+	        hours: "",
+	        volunteerTime: ""
 		}
 	}
 
@@ -64,6 +66,7 @@ class TasksBoard extends Component {
   			 	this.reset();
   			 })
   			 .catch(error => {
+  			 	alert("Ops, there was a problem, please try again later")
   			 	console.log("there was problem deleting")
   			 })
   	}
@@ -174,13 +177,15 @@ class TasksBoard extends Component {
 		   	alert("Please complete all fields of form")
 		    } else {
 		    	var randomTaskID = Math.floor(Math.random() * 1000000000)
-				var postUrl = "http://localhost:8080/api/v1/taskcompletion"
+				var postUrl = "http://localhost:8080/api/v1/taskcompletion/taskCompletionRecord"
 		  		axios.post(postUrl, {
 			    			"complete_ID": randomTaskID,
 			    			"date": this.state.completeDate,
 			    			"task_ID": this.state.Task_ID,
 			    			"monetaryAmount": this.state.monetaryAmount,
-			    			"username": this.state.Username
+			    			"username": this.state.Username,
+			    			"hours": this.state.hours,
+			    			"volunteerTime": this.state.volunteerTime + ":00"
 			    			})
 			    		.then(result => {
 			    			if (result.status === 200) {
@@ -419,6 +424,30 @@ class TasksBoard extends Component {
 					            id="status"
 					            onChange={event =>
 					                this.setState({ monetaryAmount: event.target.value })
+					            }
+					        />
+					        </FormGroup>
+					        <FormGroup style={{ marginBottom: "30px" }}>
+					        Number of Hours to Complete Task:
+					        <Input
+					            type="text"
+					            name="hoursToComplete"
+					            placeholder="Number of Hours"
+					            id="hoursToComplete"
+					            onChange={event =>
+					                this.setState({ hours: event.target.value })
+					            }
+					        />
+					        </FormGroup>
+					        <FormGroup style={{ marginBottom: "30px" }}>
+					        Time Task Started:
+					        <Input
+					            type="text"
+					            name="timeStarted"
+					            placeholder="24 Hour Clock Entry (e.g. 13:15)"
+					            id="timeStarted"
+					            onChange={event =>
+					                this.setState({ volunteerTime: event.target.value })
 					            }
 					        />
 					        </FormGroup>
