@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import "../index.css";
 
-const NavbarSS = props => {
+const NavbarSenior = props => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -32,19 +32,13 @@ const NavbarSS = props => {
               <Link to="/mainlanding">Home</Link>
             </NavItem>
             <NavItem>
-              <Link to="/taskrequest">Task Requests</Link>
-            </NavItem>
-            <NavItem>
-              <Link to="/tasksboardVolunteer">TaskBoard</Link>
-            </NavItem>
-            <NavItem>
-              <Link to="/records">Volunteer Record</Link>
+              <Link to="/taskboard">My Tasks</Link>
             </NavItem>
             <NavItem>
               <Link to="/reviews">Reviews</Link>
             </NavItem>
             <NavItem>
-              <Link to="/volunteerTasksBoard">Tasks</Link>
+              <Link to="/generalTasksBoard">All Tasks</Link>
             </NavItem>
             <NavItem>
               <Link to="/volunteerLeaderBoard">Leaderboard</Link>
@@ -70,4 +64,4 @@ const NavbarSS = props => {
   );
 };
 
-export default NavbarSS;
+export default NavbarSenior;
