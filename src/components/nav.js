@@ -32,13 +32,28 @@ const NavbarSS = props => {
               <Link to="/mainlanding">Home</Link>
             </NavItem>
             <NavItem>
-              <Link to="/taskboard">TaskBoard</Link>
+              <Link to="/taskboard">My Tasks</Link>
+            </NavItem>
+             <NavItem>
+              <Link to="/taskrequest">My Task Requests</Link>
+            </NavItem>
+            <NavItem>
+             <Link to="/tasksboardVolunteer">Volunteer TaskBoard</Link>
             </NavItem>
             <NavItem>
               <Link to="/records"> Volunteer Records</Link>
             </NavItem>
             <NavItem>
               <Link to="/reviews"> Reviews</Link>
+            </NavItem>
+            <NavItem>
+              <Link to="/generalTasksBoard">All Tasks</Link>
+            </NavItem>
+            <NavItem>
+              <Link to="/volunteerTasksBoard">All Tasks Volunteer</Link>
+            </NavItem>
+            <NavItem>
+             <Link to="/volunteerLeaderBoard">Leader Board</Link>
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
@@ -51,10 +66,8 @@ const NavbarSS = props => {
                 User Profile
               </Link>
             </NavItem>
-            <NavItem>
-              <Link className="nav-link active" className="logout" to="/">
-                logout
-              </Link>
+            <NavItem>            
+              <a href="http://localhost:3000/">logout</a>
             </NavItem>
           </Nav>
         </Collapse>
@@ -64,3 +77,4 @@ const NavbarSS = props => {
 };
 
 export default NavbarSS;
+
