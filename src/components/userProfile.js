@@ -27,7 +27,9 @@ class EditUserProfile extends Component {
       firstName: "",
       lastName: "",
       address: "",
-      postalCode: ""
+      postalCode: "",
+      city: "",
+      province: ""
     };
   }
 
@@ -40,7 +42,9 @@ class EditUserProfile extends Component {
           firstName: data.firstName,
           lastName: data.lastName,
           address: data.address,
-          postalCode: data.postalCode
+          postalCode: data.postalCode,
+          city: data.city,
+          province: data.province
         });
         console.log(this.state.address);
         console.log(this.state.postalCode);
@@ -48,7 +52,7 @@ class EditUserProfile extends Component {
       .catch(console.log);
   }
 
-  handleRegisterLocation = () => {
+  updateUserLocation = () => {
     if (
       this.state.username === "" ||
       this.state.firstName === "" ||
@@ -66,8 +70,8 @@ class EditUserProfile extends Component {
         .post("http://localhost:8080/api/v1/location/", {
           PostalCode: this.state.postalCode,
           Address: this.state.address,
-          City: "",
-          Province: ""
+          City: this.state.city,
+          Province: this.state.province
         })
         .then(result => {
           console.log(result);
@@ -142,11 +146,13 @@ class EditUserProfile extends Component {
     }
     return (
       <div>
-        <h1> Edit User Profile </h1>
-        <h3>
-          To edit your user profile for {this.props.username} change the fields
-          below and click save
-        </h3>
+        <Container>
+          <h1> Edit User Profile </h1>
+          <h3>
+            To edit your user profile for <strong>{this.props.username}</strong>{" "}
+            change the fields below and click save
+          </h3>
+        </Container>
         <Container>
           <div className="field">
             <label>First Name: </label>
@@ -173,6 +179,22 @@ class EditUserProfile extends Component {
             />
           </div>
           <div className="field">
+            <label>City: </label>
+            <input
+              type="text"
+              defaultValue={this.state.city}
+              onChange={e => this.setState({ city: e.target.value })}
+            />
+          </div>
+          <div className="field">
+            <label>Province: </label>
+            <input
+              type="text"
+              defaultValue={this.state.province}
+              onChange={e => this.setState({ province: e.target.value })}
+            />
+          </div>
+          <div className="field">
             <label>Postal Code: </label>
             <input
               type="text"
@@ -181,7 +203,11 @@ class EditUserProfile extends Component {
             />
           </div>
 
-          <Button color="warning" onClick={this.handleRegisterLocation}>
+          <Button
+            color="warning"
+            onClick={this.updateUserLocation}
+            style={{ marginRight: "10px" }}
+          >
             Save Changes
           </Button>
           <Button color="danger" onClick={event => this.onDeleteClick(event)}>

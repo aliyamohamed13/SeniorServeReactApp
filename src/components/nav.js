@@ -23,9 +23,9 @@ const NavbarSS = props => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar className="change" dark expand="md">
         <NavbarBrand> seniorServe</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+        <NavbarToggler className="toggle-nav" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-left" navbar>
             <NavItem>
@@ -52,7 +52,7 @@ const NavbarSS = props => {
               </Link>
             </NavItem>
             <NavItem>
-              <Link className="nav-link active" className="logout" href="/">
+              <Link className="nav-link active" className="logout" to="/">
                 logout
               </Link>
             </NavItem>

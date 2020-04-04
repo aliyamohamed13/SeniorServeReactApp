@@ -32,7 +32,8 @@ class Login extends Component {
       lastName: "",
       address: "",
       postalCode: "",
-      city: ""
+      city: "",
+      province: ""
     };
   }
 
@@ -47,8 +48,8 @@ class Login extends Component {
       .post("http://localhost:8080/api/v1/location/", {
         PostalCode: this.state.postalCode,
         Address: this.state.address,
-        City: "",
-        Province: ""
+        City: this.state.city,
+        Province: this.state.province
       })
       .then(function(response) {
         if (
@@ -100,20 +101,22 @@ class Login extends Component {
       this.state.firstName === "" ||
       this.state.lastName === "" ||
       this.state.address === "" ||
-      this.state.postalCode === ""
+      this.state.postalCode === "" ||
+      this.state.city === "" ||
+      this.state.province === ""
     ) {
     } else {
-      console.log(this.state.regUsername);
-      console.log(this.state.firstName);
-      console.log(this.state.lastName);
+      console.log("here are attributes");
       console.log(this.state.address);
+      console.log(this.state.city);
+      console.log(this.state.province);
       console.log(this.state.postalCode);
       axios
         .post("http://localhost:8080/api/v1/location/", {
           PostalCode: this.state.postalCode,
           Address: this.state.address,
-          City: "",
-          Province: ""
+          City: this.state.city,
+          Province: this.state.province
         })
         .then(result => {
           console.log(result);
@@ -231,11 +234,6 @@ class Login extends Component {
                   />
                 </FormGroup>
                 <Button
-                  style={{
-                    marginBottom: "30px",
-                    backgroundColor: "white",
-                    color: "black"
-                  }}
                   className="buttonOr"
                   onClick={event => this.handleClick(event)}
                 >
@@ -249,7 +247,7 @@ class Login extends Component {
             <br />
             <h3 style={{ marginBottom: "30px" }}>Register:</h3>
             <Form>
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="regUsername"
@@ -260,7 +258,7 @@ class Login extends Component {
                   }
                 />
               </FormGroup>{" "}
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="firstName"
@@ -271,7 +269,7 @@ class Login extends Component {
                   }
                 />
               </FormGroup>
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="lastName"
@@ -282,7 +280,7 @@ class Login extends Component {
                   }
                 />
               </FormGroup>
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="address"
@@ -293,7 +291,29 @@ class Login extends Component {
                   }
                 />
               </FormGroup>
-              <FormGroup style={{ marginBottom: "30px" }}>
+              <FormGroup className="registerForm">
+                <Input
+                  type="text"
+                  name="city"
+                  id="city"
+                  placeholder="City"
+                  onChange={event =>
+                    this.setState({ city: event.target.value })
+                  }
+                />
+              </FormGroup>
+              <FormGroup className="registerForm">
+                <Input
+                  type="text"
+                  name="province"
+                  id="province"
+                  placeholder="Province"
+                  onChange={event =>
+                    this.setState({ province: event.target.value })
+                  }
+                />
+              </FormGroup>
+              <FormGroup className="registerForm">
                 <Input
                   type="text"
                   name="postalcode"
@@ -305,11 +325,6 @@ class Login extends Component {
                 />
               </FormGroup>
               <Button
-                style={{
-                  marginBottom: "30px",
-                  backgroundColor: "white",
-                  color: "black"
-                }}
                 className="buttonOr"
                 onClick={this.handleRegisterLocation}
               >

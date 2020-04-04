@@ -12,17 +12,52 @@ code {
     monospace;
 }
 
-.navbar-dark .navbar-brand {
-  color: black;
+.change {
+  color: white;
+  background-color: #1b263b;
+}
+/* Navigation Bar */
+nav {
+  background-color: #ffffff;
+  color: #1b263b;
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  position: sticky;
+  top: 0;
 }
 
-.nav-item {
-  color: black;
+.navbar-brand {
+  color: white;
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px 3px;
+  text-align: justify;
 }
 
-.navbar-nav > li {
-  padding-left: 30px;
-  padding-right: 30px;
+nav a {
+  color: white;
+  padding: 16px;
+  margin-right: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Helvetica;
+  font-size: 18px;
+}
+nav a :hover {
+  color: gold;
+}
+
+.dropdown-toggle {
+  transition: 0.5s;
+}
+
+.nav-link {
+  min-width: 90px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 h1,
@@ -38,6 +73,8 @@ h2 {
 }
 
 .LoginRegForm {
+  background-color: #1b263b;
+  color: white;
   border: 1px;
   padding: 10%;
   display: inline-block;
@@ -45,4 +82,18 @@ h2 {
   width: 100%;
   margin: auto auto;
   opacity: 0.9;
+}
+
+.registerForm {
+  margin-bottom: 20px;
+}
+
+.buttonOr {
+  background-color: white;
+  color: #1b263b;
+}
+
+.buttonOr:hover {
+  background-color: gold;
+  color: #1b263b;
 }
