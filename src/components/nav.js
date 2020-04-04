@@ -32,9 +32,6 @@ const NavbarSS = props => {
               <Link to="/mainlanding">Home</Link>
             </NavItem>
             <NavItem>
-              <Link to="/taskrequest">Task Requests</Link>
-            </NavItem>
-            <NavItem>
               <Link to="/tasksboardVolunteer">TaskBoard</Link>
             </NavItem>
             <NavItem>
