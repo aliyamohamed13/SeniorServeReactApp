@@ -8,8 +8,9 @@ class Reviews extends Component {
 		this.state = {
 			reviewInfo: [],
 			volunteers: [],
+			seniors:[],
 			volunteerUserName: "",
-			taskID: "",
+			seniorUsername: "",
 			averageRating: ""
 		}
 	}
@@ -26,6 +27,12 @@ class Reviews extends Component {
 		    .then(res => res.json())
 		    .then(data => {
 		       this.setState({ volunteers: data });
+		    })
+		    .catch(console.log);
+		fetch("http://localhost:8080/api/v1/user/seniorUsername")
+			.then(res => res.json())
+		    .then(data => {
+		       this.setState({ seniors: data });
 		    })
 		    .catch(console.log);
 	}
@@ -58,11 +65,11 @@ class Reviews extends Component {
 		showStat.style.display = "block"
 	}
 	
-	handleSubmitTask = (event) => {
+	handleSubmitSenior = (event) => {
 		console.log(this.state.taskID)
 		event.preventDefault()
 
-		axios.get("http://localhost:8080/api/v1/review/task_ID=" + this.state.taskID)
+		axios.get("http://localhost:8080/api/v1/review/senior=" + this.state.seniorUsername)
 			 .then(result => {
 			 	console.log(result)
 			 	console.log(result.data)
@@ -72,7 +79,7 @@ class Reviews extends Component {
 			          alert("Something went wrong, please check the fields and try again");
 			        });
 
-		axios.get("http://localhost:8080/api/v1/review/averageRating/task_ID=" + this.state.taskID)
+		axios.get("http://localhost:8080/api/v1/review/averageRating/senior=" + this.state.seniorUsername)
 			 .then(response => {
 			 	console.log(response)
 			 	console.log(response.data)
@@ -114,15 +121,15 @@ class Reviews extends Component {
 					</div>
 		    	</form>
 
-		    	<form onSubmit={event => this.handleSubmitTask(event)}>
+		    	<form onSubmit={event => this.handleSubmitSenior(event)}>
 		    			<div>
-			    			<label> Task ID: </label>
-							<select onChange={(e) => this.setState({ 'taskID': e.target.value})}>
-							  	{this.state.reviewInfo.map(({ 'taskID': value, 'reviewID':key }) => 
-							   	<option key={key}>{value}</option>)}
-							</select>
-							{"   "}
-							<button type="submit"> Filter By Task ID </button>
+			    			<label> Senior Username: </label>
+							<select onChange={(e) => this.setState({ seniorUsername: e.target.value})} key={'seniorUserName'}>
+							{this.state.seniors.map(key => (
+							   	<option key={key}>{key}</option>))}
+						</select>
+						{"   "}
+							<button type="submit"> Filter By Senior </button>
 						</div>
 		    	</form>
 		    	<button type="button" onClick = {this.handleReset}> Reset </button>
