@@ -7,7 +7,8 @@ import {
   FormGroup,
   Input,
   Row,
-  Col
+  Col,
+  Label
 } from "reactstrap";
 import "../index.css";
 
@@ -20,7 +21,7 @@ import {
   Redirect
 } from "react-router-dom";
 var apiBaseUrl = "http://localhost:8080/api/v1/user/";
-
+var seniorChoice = "I am a senior looking to get help with tasks";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -33,66 +34,14 @@ class Login extends Component {
       address: "",
       postalCode: "",
       city: "",
-      province: ""
+      province: "",
+      userType: "senior"
     };
   }
 
-  handleRegister(event) {
-    console.log(this.state.regUsername);
-    console.log(this.state.firstName);
-    console.log(this.state.lastName);
-    console.log(this.state.address);
-    console.log(this.state.postalCode);
-    var self = this;
-    axios
-      .post("http://localhost:8080/api/v1/location/", {
-        PostalCode: this.state.postalCode,
-        Address: this.state.address,
-        City: this.state.city,
-        Province: this.state.province
-      })
-      .then(function(response) {
-        if (
-          response.status !== 200 ||
-          self.state.regUsername === "" ||
-          self.state.firstName === "" ||
-          self.state.lastName === "" ||
-          self.state.address === "" ||
-          self.state.postalCode === ""
-        ) {
-        } else {
-          axios
-            .post(apiBaseUrl, {
-              username: self.state.regUsername,
-              firstName: self.state.firstName,
-              lastName: self.state.lastName,
-              postalCode: self.state.postalCode,
-              address: self.state.address
-            })
-            .then(function(response1) {
-              console.log(apiBaseUrl);
-              console.log(response1);
-              console.log(response1.data);
-              if (response1.status === 200) {
-                if (response1.data === "") {
-                  console.log("Registration successful");
-                  self.setState({ username: self.state.regUsername });
-                  self.setState({ redirect: true });
-                } else {
-                  alert(
-                    "This user may already exist, please try again or try logging in"
-                  );
-                }
-              } else {
-                console.log("something went wrong");
-                alert("Something went wrong, please try again");
-              }
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
-        }
-      });
+  setUserType(event) {
+    console.log(event.target.value);
+    this.setState({ userType: event.target.value });
   }
 
   handleRegisterLocation = () => {
@@ -129,8 +78,9 @@ class Login extends Component {
   };
 
   handleRegisterUser = () => {
+    console.log(apiBaseUrl + this.state.userType);
     axios
-      .post(apiBaseUrl, {
+      .post(apiBaseUrl + this.state.userType, {
         username: this.state.regUsername,
         firstName: this.state.firstName,
         lastName: this.state.lastName,
@@ -141,15 +91,9 @@ class Login extends Component {
         console.log(response);
         console.log(response.data);
         if (response.status === 200) {
-          if (response.data === "") {
-            console.log("Registration successful, redirecting");
-            this.setState({ username: this.state.regUsername });
-            this.setState({ redirect: true });
-          } else {
-            alert(
-              "This user may already exist, please try again or try logging in"
-            );
-          }
+          console.log("Registration successful, redirecting");
+          this.setState({ username: this.state.regUsername });
+          this.setState({ redirect: true });
         } else {
           console.log("something went wrong");
           alert("Something went wrong, please try again");
@@ -247,6 +191,29 @@ class Login extends Component {
             <br />
             <h3 style={{ marginBottom: "30px" }}>Register:</h3>
             <Form>
+              <FormGroup check>
+                <Label check>
+                  <Input
+                    type="radio"
+                    name="radio1"
+                    value="senior"
+                    defaultChecked
+                    onChange={event => this.setUserType(event)}
+                  />{" "}
+                  {seniorChoice}
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input
+                    type="radio"
+                    name="radio1"
+                    value="volunteer"
+                    onChange={event => this.setUserType(event)}
+                  />{" "}
+                  I want to volunteer to help seniors with various tasks{" "}
+                </Label>
+              </FormGroup>
               <FormGroup className="registerForm">
                 <Input
                   type="text"
