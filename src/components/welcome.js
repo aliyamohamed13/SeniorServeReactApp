@@ -1,60 +1,40 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Container, Col, Row } from "reactstrap";
 
 class Welcome extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      senior: ""
-    };
-  }
-
-  componentDidMount() {
-    this.setState({ username: this.props.username });
-    fetch("http://localhost:8080/api/v1/user/senior/" + this.props.username)
-      .then(res => res.json())
-      .then(data => {
-        console.log("data is: " + data);
-        this.setState({ senior: data });
-      })
-      .catch(console.log);
-  }
-
   render() {
     return (
       <div>
         <br />
         <h1> Welcome to SeniorServe </h1>
         <Container>
-          {this.state.senior ? (
-            <h3>
-              As a senior using SeniorServe you can create tasks which
-              volunteers will request to help you with.
-              <br />
-              <br />
-              See all your tasks in the 'My Tasks' tab, approve requests from
-              volunteers to help you with your task in the "Task Requests" tab,
-              and write reviews for users in "Reviews tab". You can view all
-              available tasks and create new ones in the "All Tasks" tab as well
-              as access a volunteer leaderboard through the "Leaderboard" tab.
-            </h3>
-          ) : (
-            <h3>
-              As a volunteer using SeniorServe you can sign up to volunteer for
-              tasks that seniors around you have created. Once a senior approves
-              your request to help them, we keep track of your volutneer hours
-              for you.
-              <br />
-              <br />
-              See all available tasks in the 'My Tasks' and make a request on
-              one you would like to help with. To see your requested and
-              upcoming tasks go to "Taskboard" and to see all your completed
-              hours go to "Volunteer Record" tab. You can also go to
-              "Leaderboard" to see a volunteer leaderboard as well as reviews
-              for other users of SeniorServe in "Reviews" tab.
-            </h3>
-          )}
+          <h3 style={{ padding: "8px" }}>
+            SeniorServe has several features to connect seniors needing help
+            with volunteers that can help them.{" "}
+          </h3>
+          <Row>
+            <Col className="description-card">
+              <h5>SENIORS</h5>
+              <h6>
+                Seniors using SeniorServe can ask for assistance with anything
+                they need. If you are a senior, you can post tasks you need help
+                with and when volunteers request to help you can accept or
+                decline their request. After they have helped you give them a
+                review.
+              </h6>
+            </Col>
+            <br />
+            <Col className="description-card">
+              <h5>VOLUNTEERS</h5>
+              <h6>
+                Volunteers using Senior Serve Tasks can easily view all
+                available tasks in one place and filter by preference. Once you
+                find a task you want to do, send a request and wait to be
+                approved. See all your volunteer hours in your volunteer record
+                and view how other volunteers compare in the leaderboard.
+              </h6>
+            </Col>
+          </Row>
         </Container>
       </div>
     );

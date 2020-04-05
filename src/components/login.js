@@ -164,7 +164,7 @@ class Login extends Component {
             <Container>
               <h2>Already have an account?</h2>
               <br />
-              <h3 style={{ marginBottom: "30px" }}>Login:</h3>
+              <h3 style={{ marginBottom: "20px" }}>Login:</h3>
               <Form>
                 <FormGroup style={{ marginBottom: "30px" }}>
                   <Input
@@ -189,31 +189,33 @@ class Login extends Component {
           <Col>
             <h2>New to SeniorServe?</h2>
             <br />
-            <h3 style={{ marginBottom: "30px" }}>Register:</h3>
+            <h3 style={{ marginBottom: "20px" }}>Register:</h3>
             <Form>
-              <FormGroup check>
-                <Label check>
-                  <Input
-                    type="radio"
-                    name="radio1"
-                    value="senior"
-                    defaultChecked
-                    onChange={event => this.setUserType(event)}
-                  />{" "}
-                  {seniorChoice}
-                </Label>
-              </FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input
-                    type="radio"
-                    name="radio1"
-                    value="volunteer"
-                    onChange={event => this.setUserType(event)}
-                  />{" "}
-                  I want to volunteer to help seniors with various tasks{" "}
-                </Label>
-              </FormGroup>
+              <div style={{ display: "inline-flex", marginBottom: "20px" }}>
+                <FormGroup check>
+                  <Label check>
+                    <Input
+                      type="radio"
+                      name="radio1"
+                      value="senior"
+                      defaultChecked
+                      onChange={event => this.setUserType(event)}
+                    />{" "}
+                    {seniorChoice}
+                  </Label>
+                </FormGroup>
+                <FormGroup check>
+                  <Label check>
+                    <Input
+                      type="radio"
+                      name="radio1"
+                      value="volunteer"
+                      onChange={event => this.setUserType(event)}
+                    />{" "}
+                    I want to volunteer to help seniors with various tasks{" "}
+                  </Label>
+                </FormGroup>
+              </div>
               <FormGroup className="registerForm">
                 <Input
                   type="text"
@@ -269,16 +271,34 @@ class Login extends Component {
                   }
                 />
               </FormGroup>
-              <FormGroup className="registerForm">
+              <FormGroup>
                 <Input
-                  type="text"
+                  type="select"
                   name="province"
                   id="province"
                   placeholder="Province"
                   onChange={event =>
                     this.setState({ province: event.target.value })
                   }
-                />
+                >
+                  <option value="" selected disabled>
+                    Province
+                  </option>
+
+                  <option>AB</option>
+                  <option>BC</option>
+                  <option>MB</option>
+                  <option>NB</option>
+                  <option>NL</option>
+                  <option>NS</option>
+                  <option>NT</option>
+                  <option>NU</option>
+                  <option>ON</option>
+                  <option>PE</option>
+                  <option>QC</option>
+                  <option>SK</option>
+                  <option>YT</option>
+                </Input>
               </FormGroup>
               <FormGroup className="registerForm">
                 <Input
