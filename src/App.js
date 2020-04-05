@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Login from "./components/login";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import VolunteerLeaderBoard from "./components/volunteerleaderboard";
 
 class App extends Component {
   state = {
@@ -23,7 +24,7 @@ class App extends Component {
       <div id="AppSS">
         <Router>
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route path="/" exact component={VolunteerLeaderBoard} />
           </Switch>
         </Router>
       </div>
