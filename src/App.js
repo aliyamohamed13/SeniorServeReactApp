@@ -24,7 +24,7 @@ class App extends Component {
       <div id="AppSS">
         <Router>
           <Switch>
-            <Route path="/" exact component={VolunteerLeaderBoard} />
+            <Route path="/" exact component={Login} />
           </Switch>
         </Router>
       </div>
