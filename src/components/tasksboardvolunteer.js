@@ -31,14 +31,14 @@ class TasksBoardVolunteer extends Component {
 		let requestedTasksStatus
 		let acceptedTasksStatus
 
-		if (this.state.requestedTasks.length === 0) 
+		if (this.state.requestedTasks.length === 0)
 		{
 			requestedTasksStatus = <NoTasksToDisplay />
 		} else {
 			requestedTasksStatus = <Tasks tasks={this.state.requestedTasks}/>
 		}
 
-		if (this.state.acceptedTasks.length === 0) 
+		if (this.state.acceptedTasks.length === 0)
 		{
 			acceptedTasksStatus = <NoTasksToDisplay />
 		} else {
@@ -49,12 +49,12 @@ class TasksBoardVolunteer extends Component {
 			<div>
 				<h1> My Requested Tasks </h1>
 					{requestedTasksStatus}
-				<h1> Upcoming Accepted Tasks </h1>
-					{acceptedTasksStatus}	
+				<h1> Accepted Tasks </h1>
+					{acceptedTasksStatus}
 			</div>
 		)
 	}
-	
+
 
 }
 

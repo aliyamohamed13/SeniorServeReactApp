@@ -32,7 +32,7 @@ class TaskRequest extends Component {
 		    		this.reset();
 		    	})
 		      .catch(function(error) {
-						
+
 				});
   	}
 
@@ -83,11 +83,11 @@ class TaskRequest extends Component {
 							<p> Volunteer Rating: {request.rating}
 							<br /> Total Hours Committed: {request.totalHours}</p>
 							<button onClick={event => this.handleAcceptRequest(request.username)}>
-								Accept Requst
+								Accept Request
 							</button>
 						</div>
 						))}
-				</div>	
+				</div>
 			)
 		}
 
@@ -95,7 +95,7 @@ class TaskRequest extends Component {
 		return (
 				<div>
 					{acceptStatus}
-				</div>	
+				</div>
 		)
 
 	}
