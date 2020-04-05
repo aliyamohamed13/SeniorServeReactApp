@@ -38,6 +38,8 @@ class UserJoin extends Component {
 						joinOutcome: []
 					})
 
+		document.querySelectorAll('select')
+				.forEach( ele => ele.selectedIndex = 0 );
 
 	}
 

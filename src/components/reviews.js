@@ -105,6 +105,9 @@ class Reviews extends Component {
 		    })
 		var showStat = document.getElementById("filterStats")
 		showStat.style.display = "none"
+
+		document.querySelectorAll('select')
+				.forEach( ele => ele.selectedIndex = 0 );
 	}
 
   	render() {
