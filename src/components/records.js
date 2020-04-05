@@ -10,7 +10,7 @@ class Records extends Component {
 		this.state = {
 			volunteerHours: "", 
 			volunteerRecord: [],
-			selectionFeilds: ["date", "timeOfDay", "hours", "username","task_id", "seniorUsername", "taskDescription"],
+			selectionFeilds: ["date", "timeOfDay", "hours", "task_id", "senior", "description"],
 			selectedSelectionProperty: [],
 			filtered: false,
 			filtereditems: [],
@@ -37,11 +37,13 @@ class Records extends Component {
 						filtereditems: [],
 						selectedSelectionProperty: []
 		})
+		document.querySelectorAll('input[type=checkbox]')
+				.forEach( ele => ele.checked = false );
 	}
 
 	handleSubmitProjection = () => {
 		this.setState({	filtered: true })
-
+		console.log(this.formatProjections())
 		axios.get("http://localhost:8080/api/v1/volunteerRecord/records/username=" + this.props.username 
 			+ "/" + this.formatProjections())
 		     .then(result => {
@@ -49,9 +51,6 @@ class Records extends Component {
 		     	this.setState({ filtereditems: result.data });
 		     })
 		     .catch()
-
-		document.querySelectorAll('input[type=checkbox]')
-				.forEach( ele => ele.checked = false );
 	}
 
 	formatProjections = () => {
