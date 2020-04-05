@@ -11,7 +11,9 @@ class Reviews extends Component {
 			seniors:[],
 			volunteerUserName: "",
 			seniorUsername: "",
-			averageRating: ""
+			averageRating: "",
+			
+			defaultValue:"Please Select"
 		}
 	}
 
@@ -108,11 +110,16 @@ class Reviews extends Component {
   	render() {
 	    return (
 	    	<div>
-	    		<h3>filter</h3>
+	    	<center>
+		        <h1>Review</h1>
+		     </center>
 		    	<form onSubmit={event => this.handleSubmitVolunteer(event)}>
 		    		<div>
-			    		<label> Volunteer User Name: </label>
-						<select onChange={(e) => this.setState({ volunteerUserName: e.target.value})} key={'volunteerUserName'}>
+			    		<label> Volunteer Username: </label>
+			    		{"   "}
+						<select defaultValue={this.state.defaultValue}
+						onChange={(e) => this.setState({ volunteerUserName: e.target.value})} key={'volunteerUserName'}>
+								<option key="default" disabled>Please Select</option>
 							{this.state.volunteers.map(key => (
 							   	<option key={key}>{key}</option>))}
 						</select>
@@ -124,7 +131,10 @@ class Reviews extends Component {
 		    	<form onSubmit={event => this.handleSubmitSenior(event)}>
 		    			<div>
 			    			<label> Senior Username: </label>
-							<select onChange={(e) => this.setState({ seniorUsername: e.target.value})} key={'seniorUserName'}>
+			    			{"   "}
+							<select defaultValue={this.state.defaultValue}
+							onChange={(e) => this.setState({ seniorUsername: e.target.value})} key={'seniorUserName'}>
+								<option key="default" disabled>Please Select</option>
 							{this.state.seniors.map(key => (
 							   	<option key={key}>{key}</option>))}
 						</select>
@@ -136,9 +146,7 @@ class Reviews extends Component {
 		    <div id="filterStats" style={{display: "none"}}>
 		    	<h6>Average Rating: {this.state.averageRating}</h6>
 		    </div>
-		     <center>
-		        <h1>Review</h1>
-		     </center>
+
 		      {this.state.reviewInfo.map(review => (
 		        <div key={review.taskID+review.volunteerUserName} className="card">
 		          <div className="card-body">

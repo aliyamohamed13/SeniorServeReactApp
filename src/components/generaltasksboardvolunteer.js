@@ -163,11 +163,13 @@ class GeneralTasksBoardVolunteer extends Component {
 				</div>
 
 				<div style={{paddingRight: 10, float: 'right', width: '70%'}}>
+					<center>
+				        <h1>Task List</h1>
+				     </center>
 					<button type="button" onClick={this.reset}>
 						Show All Tasks
 					</button>
 
-					<h2> Task List </h2>
 					{this.state.TaskInfo.map(task => (
 				        <div key={task.Task_ID} className="card">
 				          <div className="card-body">

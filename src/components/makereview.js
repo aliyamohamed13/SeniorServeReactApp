@@ -21,7 +21,9 @@ class MakeReview extends Component {
 			selectedVolunteer: "",
 			review: "",
 			rating:"",
-			taskID: ""
+			taskID: "",
+			
+			defaultValue:"Please Select"
 		}
 	}
 
@@ -95,7 +97,9 @@ class MakeReview extends Component {
 						  <Modal.Title>Review Information</Modal.Title>
 						</Modal.Header>
 						<p style={{paddingLeft: '5%', paddingTop: '5%'}}>Review For: {"   "}
-							<select onChange={(e) => this.setState({ selectedVolunteer: e.target.value})}>
+							<select defaultValue={this.state.defaultValue}
+							onChange={(e) => this.setState({ selectedVolunteer: e.target.value})}>
+								<option key="default" disabled>Please Select</option>
 							{this.state.volunteers.map(key => (
 							   	<option key={key.username}>{key.username}</option>))}
 							</select>

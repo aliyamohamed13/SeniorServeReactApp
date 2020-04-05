@@ -12,7 +12,9 @@ class Records extends Component {
 			selectionFeilds: ["date", "description", "hours", "senior"],
 			selectedSelectionProperty: "",
 			filtered: false,
-			filtereditems: []
+			filtereditems: [],
+
+			defaultValue:"Please Select"
 		}
 	}
 
@@ -70,7 +72,9 @@ class Records extends Component {
 		    		<div>
 			    		<label> Selection Property: </label>
 			    		{"   "}
-						<select onChange={(e) => this.setState({ selectedSelectionProperty: e.target.value})} key={'SelectionProperty'}>
+						<select defaultValue={this.state.defaultValue}
+						onChange={(e) => this.setState({ selectedSelectionProperty: e.target.value})} key={'SelectionProperty'}>
+							<option key="default" disabled>Please Select</option>
 							{this.state.selectionFeilds.map(key => (
 							   	<option key={key}>{key}</option>))}
 						</select>

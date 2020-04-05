@@ -286,6 +286,10 @@ class GeneralTasksBoard extends Component {
 				</div>
 
 				<div style={{paddingRight: 10, float: 'right', width: '70%'}}>
+					<center>
+				        <h1>Task List</h1>
+				    </center>
+
 					<button type="button" onClick={this.reset}>
 						Show All Tasks
 					</button>
@@ -403,7 +407,6 @@ class GeneralTasksBoard extends Component {
 						  </Button>
 						</Modal.Footer>
 					</Modal>
-					<h2> Task List </h2>
 					<Tasks tasks={this.state.TaskInfo} />
 				</div>
 		    </div>
