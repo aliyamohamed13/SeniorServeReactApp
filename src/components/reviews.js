@@ -142,8 +142,8 @@ class Reviews extends Component {
 							<button type="submit"> Filter By Senior </button>
 						</div>
 		    	</form>
-		    	<button type="button" onClick = {this.handleReset}> Reset </button>
-		    <div id="filterStats" style={{display: "none"}}>
+		    	<button style={{marginBottom: 10}} type="button" onClick = {this.handleReset}> Reset </button>
+		    <div id="filterStats" style={{display: "none", marginBottom: 10}}>
 		    	<h6>Average Rating: {this.state.averageRating}</h6>
 		    </div>
 

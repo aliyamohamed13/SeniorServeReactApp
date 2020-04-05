@@ -11,6 +11,7 @@ import VolunteerLeaderBoard from "./volunteerleaderboard";
 import TasksBoardVolutneer from "./tasksboardvolunteer";
 import TaskRequest from "./taskrequest";
 import NavSenior from "./navSenior.js";
+import UserJoin from "./userjoin"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class Mainlanding extends Component {
@@ -89,6 +90,12 @@ class Mainlanding extends Component {
               path="/tasksboardVolunteer"
               render={() => (
                 <TasksBoardVolutneer username={this.state.username} />
+              )}
+            />
+            <Route
+              path="/compareUsers"
+              render={() => (
+                <UserJoin username={this.state.username} />
               )}
             />
             <Route

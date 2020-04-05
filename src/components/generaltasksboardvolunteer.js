@@ -109,7 +109,7 @@ class GeneralTasksBoardVolunteer extends Component {
 
 	    return (
 	    	<div style={{display: 'table', width: '90%'}}>
-				<div align="left" style={{paddingLeft: '5%', paddingRight: 20, float: 'left', width: '30%'}}>
+				<div align="left" style={{paddingLeft: '5%', paddingRight: 20, float: 'left', width: '30%', marginTop: '5%'}}>
 					<form onSubmit={event => this.handleSubmit(event)}>
 						<h3 align={"center"}>Filter</h3>
 							<div>
@@ -158,7 +158,7 @@ class GeneralTasksBoardVolunteer extends Component {
 					<center>
 				        <h1>Task List</h1>
 				     </center>
-					<button type="button" onClick={this.reset}>
+					<button type="button" onClick={this.reset} style={{marginBottom: 10}}>
 						Show All Tasks
 					</button>
 

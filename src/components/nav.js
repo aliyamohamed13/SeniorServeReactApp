@@ -40,6 +40,9 @@ const NavbarSS = props => {
             <NavItem>
               <Link to="/volunteerLeaderBoard">Leaderboard</Link>
             </NavItem>
+            <NavItem>
+              <Link to="/compareUsers">Compare Users</Link>
+            </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
             <NavItem>

@@ -78,10 +78,10 @@ class TaskRequest extends Component {
 			acceptStatus = (
 				<div>
 					{this.state.pendingTaskRequests.map(request => (
-						<div key={request.username}>
+						<div key={request.username} style={{marginBottom: 10}}>
 							<h6> Request From: {request.username} </h6>
 							<p> Volunteer Rating: {request.rating}
-							<br /> Total Hours Committed: {request.totalHours}</p>
+							<br /> Hours as Volunteer: {request.totalHours}</p>
 							<button onClick={event => this.handleAcceptRequest(request.username)}>
 								Accept Request
 							</button>
