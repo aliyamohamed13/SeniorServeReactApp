@@ -46,9 +46,11 @@ class Mainlanding extends Component {
           ) : (
             <Nav username={this.state.username} />
           )}
-          {/* <Nav username={this.state.username} /> */}
           <Switch>
-            <Route path="/mainlanding" component={Welcome} />
+            <Route
+              path="/mainlanding"
+              render={() => <Welcome username={this.state.username} />}
+            />
             <Route
               path="/taskboard"
               render={() => <Tasksboard username={this.state.username} />}
