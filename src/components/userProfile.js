@@ -3,18 +3,12 @@ import axios from "axios";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
   Redirect
 } from "react-router-dom";
 
 import {
   Container,
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Row,
-  Col
+  Button
 } from "reactstrap";
 var apiBaseUrl = "http://localhost:8080/api/v1/user/";
 

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import NoTasksToDisplay from './notaskstodisplay';
 import AcceptTaskRequest from './accepttaskrequest'
 

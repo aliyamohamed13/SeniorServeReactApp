@@ -245,7 +245,6 @@ class TasksBoard extends Component {
 
 		let currentTask
 		let completedTasks
-		let pendingTasksReq
 
 		if (this.state.userTaskInfo.length === 0) {
 			currentTask = <NoTasksToDisplay />

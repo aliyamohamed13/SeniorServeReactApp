@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import Tasks from './tasks'
-import {Modal, Button} from 'react-bootstrap';
 import TaskRequestVolunteer from './taskrequestvolunteer'
-import axios from "axios";
-import {
-  Form,
-  FormGroup,
-  Input
-} from "reactstrap";
 
 
 class GeneralTasksBoardVolunteer extends Component {
