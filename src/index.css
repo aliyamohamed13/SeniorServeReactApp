@@ -97,3 +97,10 @@ h2 {
   background-color: gold;
   color: #1b263b;
 }
+
+.description-card {
+  padding: 8%;
+  border-style: outset;
+  font-size: large;
+  margin: 20px;
+}
