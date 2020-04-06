@@ -85,12 +85,10 @@ class GeneralTasksBoardVolunteer extends Component {
 		fetch(apiCall)
 		    .then(res => res.json())
 		    .then(data => {
-		       this.setState({ TaskInfo: data, SelectedCities:[], SelectedProvinces:[], SelectedPreferences:[]});
+		       this.setState({ TaskInfo: data});
 		    })
 		    .catch(console.log);
 		}
-		document.querySelectorAll('input[type=checkbox]')
-				.forEach( ele => ele.checked = false );
 	}
 
 	reset = () => {
@@ -98,8 +96,10 @@ class GeneralTasksBoardVolunteer extends Component {
 		fetch("http://localhost:8080/api/v1/task/")
 		    .then(res => res.json())
 		    .then(data => {
-		       this.setState({ TaskInfo: data });
+		       this.setState({ TaskInfo: data, SelectedCities:[], SelectedProvinces:[], SelectedPreferences:[]});
 		    })
+		document.querySelectorAll('input[type=checkbox]')
+				.forEach( ele => ele.checked = false );
 	}
 
 

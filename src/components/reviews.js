@@ -42,58 +42,59 @@ class Reviews extends Component {
 	handleSubmitVolunteer = (event) => {
 		console.log(this.state.volunteerUserName)
 		event.preventDefault()
+		if (this.state.volunteerUserName !== "") {
+			axios.get("http://localhost:8080/api/v1/review/volunteer=" + this.state.volunteerUserName)
+				 .then(result => {
+				 	console.log(result)
+				 	console.log(result.data)
+				 	this.setState({reviewInfo: result.data})
+				 })
+				 .catch(function(error) {
+				          alert("Something went wrong, please check the fields and try again");
+				        });
 
-		axios.get("http://localhost:8080/api/v1/review/volunteer=" + this.state.volunteerUserName)
-			 .then(result => {
-			 	console.log(result)
-			 	console.log(result.data)
-			 	this.setState({reviewInfo: result.data})
-			 })
-			 .catch(function(error) {
-			          alert("Something went wrong, please check the fields and try again");
-			        });
+			axios.get("http://localhost:8080/api/v1/review/averageRating/volunteer=" + this.state.volunteerUserName)
+				 .then(response => {
+				 	console.log(response)
+				 	console.log(response.data)
+				 	this.setState({averageRating: response.data})
+				 })
+				 .catch(function(error) {
+				          alert("Something went wrong, please check the fields and try again");
+				        });
 
-		axios.get("http://localhost:8080/api/v1/review/averageRating/volunteer=" + this.state.volunteerUserName)
-			 .then(response => {
-			 	console.log(response)
-			 	console.log(response.data)
-			 	this.setState({averageRating: response.data})
-			 })
-			 .catch(function(error) {
-			          alert("Something went wrong, please check the fields and try again");
-			        });
-
-		var showStat = document.getElementById("filterStats")
-		showStat.style.display = "block"
+			var showStat = document.getElementById("filterStats")
+			showStat.style.display = "block"
+		}
 	}
 	
 	handleSubmitSenior = (event) => {
 		console.log(this.state.taskID)
 		event.preventDefault()
+		if (this.state.seniorUsername !== "") {
+			axios.get("http://localhost:8080/api/v1/review/senior=" + this.state.seniorUsername)
+				 .then(result => {
+				 	console.log(result)
+				 	console.log(result.data)
+				 	this.setState({reviewInfo: result.data})
+				 })
+				 .catch(function(error) {
+				          alert("Something went wrong, please check the fields and try again");
+				        });
 
-		axios.get("http://localhost:8080/api/v1/review/senior=" + this.state.seniorUsername)
-			 .then(result => {
-			 	console.log(result)
-			 	console.log(result.data)
-			 	this.setState({reviewInfo: result.data})
-			 })
-			 .catch(function(error) {
-			          alert("Something went wrong, please check the fields and try again");
-			        });
+			axios.get("http://localhost:8080/api/v1/review/averageRating/senior=" + this.state.seniorUsername)
+				 .then(response => {
+				 	console.log(response)
+				 	console.log(response.data)
+				 	this.setState({averageRating: response.data})
+				 })
+				 .catch(function(error) {
+				          alert("Something went wrong, please check the fields and try again");
+				        });
 
-		axios.get("http://localhost:8080/api/v1/review/averageRating/senior=" + this.state.seniorUsername)
-			 .then(response => {
-			 	console.log(response)
-			 	console.log(response.data)
-			 	this.setState({averageRating: response.data})
-			 })
-			 .catch(function(error) {
-			          alert("Something went wrong, please check the fields and try again");
-			        });
-
-		var showStat = document.getElementById("filterStats")
-		showStat.style.display = "block"
-
+			var showStat = document.getElementById("filterStats")
+			showStat.style.display = "block"
+		}
 	}
 
 	handleReset = () => {
@@ -101,7 +102,7 @@ class Reviews extends Component {
 		fetch("http://localhost:8080/api/v1/review/")
 		    .then(res => res.json())
 		    .then(data => {
-		       this.setState({ reviewInfo: data });
+		       this.setState({ reviewInfo: data,  seniorUsername: "", volunteerUserName: ""});
 		    })
 		var showStat = document.getElementById("filterStats")
 		showStat.style.display = "none"

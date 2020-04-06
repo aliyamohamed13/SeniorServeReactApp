@@ -21,15 +21,19 @@ class UserJoin extends Component {
 
 	handleJoinQuery = (event) => {
 		event.preventDefault()
-		axios.get("http://localhost:8080/api/v1/user/userJoin/" + this.state.selectedJoinBy + "&" + this.state.selectedJoinCondition)
-			 .then(result => {
-			 	console.log(result)
-			 	console.log(result.data)
-			 	this.setState({joinOutcome: result.data})
-			 })
-			 .catch(function(error) {
-			          alert("Something went wrong, please check the fields and try again");
-			        });
+		if (this.state.selectedJoinBy !== "" && this.state.selectedJoinCondition !== "") {
+			axios.get("http://localhost:8080/api/v1/user/userJoin/" + this.state.selectedJoinBy + "&" + this.state.selectedJoinCondition)
+				 .then(result => {
+				 	console.log(result)
+				 	console.log(result.data)
+				 	this.setState({joinOutcome: result.data})
+				 })
+				 .catch(function(error) {
+				          alert("Something went wrong, please check the fields and try again");
+				        });
+		} else if (this.state.selectedJoinBy === "" || this.state.selectedJoinCondition === "") {
+			alert("Please check that all fields have been selected")
+		}
 	}
 
 	reset = () => {
