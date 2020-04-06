@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import {Button, Container} from "reactstrap";
 
 class TaskRequest extends Component {
 
@@ -76,18 +77,18 @@ class TaskRequest extends Component {
 		} else {
 
 			acceptStatus = (
-				<div>
+				<Container className="tasks-grid">
 					{this.state.pendingTaskRequests.map(request => (
 						<div key={request.username} style={{marginBottom: 10}}>
 							<h6> Request From: {request.username} </h6>
 							<p> Volunteer Rating: {request.rating}
 							<br /> Hours as Volunteer: {request.totalHours}</p>
-							<button onClick={event => this.handleAcceptRequest(request.username)}>
+							<Button onClick={event => this.handleAcceptRequest(request.username)}>
 								Accept Request
-							</button>
+							</Button>
 						</div>
 						))}
-				</div>
+				</Container>
 			)
 		}
 

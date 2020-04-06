@@ -45,6 +45,7 @@ class VolunteerLeaderBoard extends Component {
 		console.log(this.state.hoursRanking)
 	    return (
 	    	<div >
+				<br/>
 	    		<h1>Snapshot of Volunteer Achievements</h1>
 	    		<Container style={{justifyContent: 'center', maxWidth: '70%'}}>
 					<Row>

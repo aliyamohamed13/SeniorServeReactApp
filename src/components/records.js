@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import VolunteerRecord from "./volunteerrecord"
 import axios from "axios";
-import { Input} from "reactstrap";
+import { Input, Button } from "reactstrap";
 
 class Records extends Component {
 
@@ -100,11 +100,12 @@ class Records extends Component {
 											</div>
 										</div>
 									))}
-							<button onClick={event => this.handleSubmitProjection(event)}> Filter By Property </button>
+							<Button onClick={event => this.handleSubmitProjection(event)}> Filter By Property </Button>
 						</div>
-			    	<button style={{marginTop: 10}} type="button" onClick={e => this.handleReset()}> Reset </button>
+			    	<Button style={{marginTop: 10}} type="button" onClick={e => this.handleReset()}> Reset </Button>
 			    </div>	
 			    <div style={{paddingRight: 10, float: 'right', width: '70%'}}>
+					<br/>
 			    	<h1> Records Page </h1>
 					<h4> Total Volunteer Hours: {this.state.volunteerHours}</h4>
 	    			{recordStatus}

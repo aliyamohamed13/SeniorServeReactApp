@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {Modal, Button} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
+import {Container, Button} from "reactstrap"
 import axios from "axios";
 import {
   Form,
@@ -73,7 +74,7 @@ class MakeReview extends Component {
 		console.log(this.state.volunteers)
 		return (
 			<div>
-				<div>
+				<Container className="tasks-grid">
 					{this.props.tasks.map(task => (
 						<div key={task.Task_ID} >
 							<div className="card">
@@ -83,14 +84,14 @@ class MakeReview extends Component {
 						              Date: {task.Date} Status: {task.Status}
 						            </h6>
 					            	<p className="card-text">{task.Address} {task.City} {task.Province} {task.PostalCode}</p>
-					            	<button type='button' onClick={(e) => this.setState({showReview: true, taskID: task.Task_ID})}>
+					            	<Button type='button' onClick={(e) => this.setState({showReview: true, taskID: task.Task_ID})}>
 									Make Review
-									</button>
+									</Button>
 					          	</div>
 					        </div>
 						</div>
 					))}
-				</div>
+				</Container>
 				<div>
 					<Modal show={this.state.showReview} onHide={this.handleClose}>
 						<Modal.Header closeButton>

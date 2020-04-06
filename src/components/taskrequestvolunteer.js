@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import { Button } from "reactstrap";
 
 class TaskRequestVolunteer extends Component {
 	constructor() {
@@ -64,9 +64,9 @@ class TaskRequestVolunteer extends Component {
 		if (this.props.status !== "Completed" && this.props.status !== "completed")
 		{
 			requestButton = (
-				<button id={this.props.taskID} onClick={(e) =>this.handleRequestClick()}>
+				<Button style={{margin:"20px"}} id={this.props.taskID} onClick={(e) => this.handleRequestClick()}>
 					{this.state.buttonText}
-				</button>
+				</Button>
 			)
 		} else {
 			requestButton = "";

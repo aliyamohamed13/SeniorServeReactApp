@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import JoinRender from "./joinrender"
+import {Button} from "reactstrap"
 
 
 class UserJoin extends Component {
@@ -65,6 +66,7 @@ class UserJoin extends Component {
 		return(
 			<div>
 			<center>
+				<br/>
 				<h1> Compare Attributes Between Users </h1>
 			</center>	
 			<div>
@@ -91,13 +93,13 @@ class UserJoin extends Component {
 							</select>
 							{"   "}
 						</div>
-						<button type="submit"> Compare! </button>
+						<Button type="submit"> Compare! </Button>
 						{"   "}
 			    	</form>
 		    	</div>
 		    	{"   "}
 		    	<div style={{marginTop: 5}}>
-		    		<button type="button" onClick={this.reset}> Reset </button>
+		    		<Button type="button" onClick={this.reset}> Reset </Button>
 		    	</div>
 		    	{joinRender}
 

@@ -1,9 +1,10 @@
 import React from "react";
+import {Container} from "reactstrap"
 
 const Tasks = ({ tasks }) => {
   console.log(tasks)
   return (
-    <div>
+    <Container className="tasks-grid">
       {tasks.map(task => (
         <div key={task.Task_ID} className="card">
           <div className="card-body">
@@ -15,7 +16,7 @@ const Tasks = ({ tasks }) => {
           </div>
         </div>
       ))}
-    </div>
+    </Container>
   );
 };
 
