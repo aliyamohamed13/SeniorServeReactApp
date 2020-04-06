@@ -344,15 +344,29 @@ class TasksBoard extends Component {
 					              <FormGroup style={{ marginBottom: "30px" }}>
 					              Province:
 					                <Input
-					                  type="text"
+					                  type="select"
 					                  name="Province"
 					                  id="Province"
 					                  placeholder="Province"
-					                  value={this.state.Province}
+					                  defaultValue={this.state.Province}
 					                  onChange={event =>
 					                    this.setState({ Province: event.target.value })
 					                  }
-					                />
+					                >
+					                	<option>AB</option>
+					                  	<option>BC</option>
+					                  	<option>MB</option>
+					                  	<option>NB</option>
+					                  	<option>NL</option>
+					                  	<option>NS</option>
+					                  	<option>NT</option>
+					                  	<option>NU</option>
+					                  	<option>ON</option>
+					                  	<option>PE</option>
+					                  	<option>QC</option>
+					                  	<option>SK</option>
+					                  	<option>YT</option>
+					                </Input>
 					              </FormGroup>
 					              <FormGroup style={{ marginBottom: "30px" }}>
 					              PostalCode:
