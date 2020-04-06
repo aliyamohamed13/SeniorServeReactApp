@@ -94,8 +94,8 @@ h2 {
 }
 
 .buttonOr:hover {
-  background-color: gold;
-  color: #1b263b;
+  background-color: goldenrod;
+  color: white;
 }
 
 .description-card {
@@ -103,4 +103,25 @@ h2 {
   border-style: outset;
   font-size: large;
   margin: 20px;
+}
+
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  grid-auto-rows: minMax(100px, auto);
+}
+
+.request-btn {
+  background-color: goldenrod;
+  border-color: goldenrod;
+}
+
+.del-btn {
+  background-color: red;
+  border-color: red;
+}
+.del-btn:hover {
+  background-color: red;
+  border-color: red;
 }

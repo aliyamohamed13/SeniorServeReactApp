@@ -4,14 +4,7 @@ import { Container } from "reactstrap";
 const Tasks = ({ tasks }) => {
   console.log(tasks);
   return (
-    <Container
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        gridGap: "10px",
-        gridAutoRows: "minMax(100px, auto)",
-      }}
-    >
+    <Container className="tasks-grid">
       {tasks.map((task) => (
         <div key={task.Task_ID} className="card">
           <div className="card-body">

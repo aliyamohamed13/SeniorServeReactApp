@@ -1,15 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 
-import {
-  Container,
-  Button
-} from "reactstrap";
+import { Container, Button } from "reactstrap";
 var apiBaseUrl = "http://localhost:8080/api/v1/user/";
 
 class EditUserProfile extends Component {
@@ -23,14 +16,14 @@ class EditUserProfile extends Component {
       address: "",
       postalCode: "",
       city: "",
-      province: ""
+      province: "",
     };
   }
 
   componentDidMount() {
     fetch("http://localhost:8080/api/v1/user/" + this.props.username)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         this.setState({
           username: data.username,
           firstName: data.firstName,
@@ -38,7 +31,7 @@ class EditUserProfile extends Component {
           address: data.address,
           postalCode: data.postalCode,
           city: data.city,
-          province: data.province
+          province: data.province,
         });
         console.log(this.state.address);
         console.log(this.state.postalCode);
@@ -65,13 +58,13 @@ class EditUserProfile extends Component {
           PostalCode: this.state.postalCode,
           Address: this.state.address,
           City: this.state.city,
-          Province: this.state.province
+          Province: this.state.province,
         })
-        .then(result => {
+        .then((result) => {
           console.log(result);
           this.updateUser();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     }
@@ -84,9 +77,9 @@ class EditUserProfile extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         postalCode: this.state.postalCode,
-        address: this.state.address
+        address: this.state.address,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
         console.log(response.data);
         if (response.status === 200) {
@@ -100,7 +93,7 @@ class EditUserProfile extends Component {
           alert("Something went wrong, please try again");
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -111,13 +104,13 @@ class EditUserProfile extends Component {
     console.log(this.props.username);
     axios
       .delete(apiBaseUrl + this.props.username, {})
-      .then(function(response) {
+      .then(function (response) {
         if (response.status === 200) {
           self.setState({ redirect: true });
         } else {
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -131,7 +124,7 @@ class EditUserProfile extends Component {
           <Switch>
             <Redirect
               to={{
-                pathname: "/"
+                pathname: "/",
               }}
             ></Redirect>
           </Switch>
@@ -141,7 +134,8 @@ class EditUserProfile extends Component {
     return (
       <div>
         <Container>
-          <h1> Edit User Profile </h1>
+          <br />
+          <h1> Edit Your User Profile </h1>
           <h3>
             To edit your user profile for <strong>{this.props.username}</strong>{" "}
             change the fields below and click save
@@ -153,7 +147,7 @@ class EditUserProfile extends Component {
             <input
               type="text"
               defaultValue={this.state.firstName}
-              onChange={e => this.setState({ firstName: e.target.value })}
+              onChange={(e) => this.setState({ firstName: e.target.value })}
             />
           </div>
           <div className="field">
@@ -161,7 +155,7 @@ class EditUserProfile extends Component {
             <input
               type="text"
               defaultValue={this.state.lastName}
-              onChange={e => this.setState({ lastName: e.target.value })}
+              onChange={(e) => this.setState({ lastName: e.target.value })}
             />
           </div>
           <div className="field">
@@ -169,7 +163,7 @@ class EditUserProfile extends Component {
             <input
               type="text"
               defaultValue={this.state.address}
-              onChange={e => this.setState({ address: e.target.value })}
+              onChange={(e) => this.setState({ address: e.target.value })}
             />
           </div>
           <div className="field">
@@ -177,7 +171,7 @@ class EditUserProfile extends Component {
             <input
               type="text"
               defaultValue={this.state.city}
-              onChange={e => this.setState({ city: e.target.value })}
+              onChange={(e) => this.setState({ city: e.target.value })}
             />
           </div>
           <div className="field">
@@ -185,7 +179,7 @@ class EditUserProfile extends Component {
             <input
               type="text"
               defaultValue={this.state.province}
-              onChange={e => this.setState({ province: e.target.value })}
+              onChange={(e) => this.setState({ province: e.target.value })}
             />
           </div>
           <div className="field">
@@ -193,7 +187,7 @@ class EditUserProfile extends Component {
             <input
               type="text"
               defaultValue={this.state.postalCode}
-              onChange={e => this.setState({ postalCode: e.target.value })}
+              onChange={(e) => this.setState({ postalCode: e.target.value })}
             />
           </div>
 
@@ -204,7 +198,7 @@ class EditUserProfile extends Component {
           >
             Save Changes
           </Button>
-          <Button color="danger" onClick={event => this.onDeleteClick(event)}>
+          <Button color="danger" onClick={(event) => this.onDeleteClick(event)}>
             Delete account
           </Button>
         </Container>
