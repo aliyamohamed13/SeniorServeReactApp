@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import Tasks from './tasks'
-import {Modal, Button} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
+
 import axios from "axios";
 import {
+	Button, 
+	Container,
   Form,
   FormGroup,
   Input
@@ -294,7 +297,7 @@ class GeneralTasksBoard extends Component {
 							  )))}
 							</div>
 							<div align={"center"}>
-								<button type="submit" > Filter </button>
+								<Button type="submit" > Filter </Button>
 							</div>
 						<div style={{height : 100}}>
 
@@ -304,16 +307,17 @@ class GeneralTasksBoard extends Component {
 
 				<div style={{paddingRight: 10, float: 'right', width: '70%'}}>
 					<center>
+						<br/>
 				        <h1>Task List</h1>
 				    </center>
 
-					<button style={{marginBottom: 5}} type="button" onClick={this.reset}>
+					<Button style={{marginBottom: 5}} type="button" onClick={this.reset}>
 						Show All Tasks
-					</button>
+					</Button>
 					{"   "}
-					<button type="button" onClick={this.handleShow}>
+					<Button className="request-btn" style={{marginBottom: 5}} type="button" onClick={this.handleShow}>
 						Add Task
-					</button>
+					</Button>
 
 					<Modal show={this.state.show} onHide={this.handleClose}>
 						<Modal.Header closeButton>
@@ -438,7 +442,7 @@ class GeneralTasksBoard extends Component {
 						  <Button variant="secondary" onClick={this.handleClose}>
 							Close
 						  </Button>
-						  <Button variant="primary" onClick={this.handleAddTask}>
+						  <Button className="request-btn" variant="primary" onClick={this.handleAddTask}>
 							Create Task
 						  </Button>
 						</Modal.Footer>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {Container, Button} from "reactstrap";
 
 
 class Reviews extends Component {
@@ -115,6 +116,7 @@ class Reviews extends Component {
 	    return (
 	    	<div>
 	    	<center>
+				<br/>
 		        <h1>Review</h1>
 		     </center>
 		    	<form onSubmit={event => this.handleSubmitVolunteer(event)}>
@@ -128,10 +130,10 @@ class Reviews extends Component {
 							   	<option key={key}>{key}</option>))}
 						</select>
 						{"   "}
-						<button type="submit"> Filter By Volunteer </button>
+						<Button className="request-btn" type="submit"> Filter By Volunteer </Button>
 					</div>
 		    	</form>
-
+<br/>
 		    	<form onSubmit={event => this.handleSubmitSenior(event)}>
 		    			<div>
 			    			<label> Senior Username: </label>
@@ -143,14 +145,14 @@ class Reviews extends Component {
 							   	<option key={key}>{key}</option>))}
 						</select>
 						{"   "}
-							<button type="submit"> Filter By Senior </button>
+							<Button className="request-btn" type="submit"> Filter By Senior </Button>
 						</div>
 		    	</form>
-		    	<button style={{marginBottom: 10}} type="button" onClick = {this.handleReset}> Reset </button>
+		    	<Button style={{marginBottom: 10}} type="button" onClick = {this.handleReset}> Reset </Button>
 		    <div id="filterStats" style={{display: "none", marginBottom: 10}}>
 		    	<h6>Average Rating: {this.state.averageRating}</h6>
 		    </div>
-
+			<Container className="tasks-grid">
 		      {this.state.reviewInfo.map(review => (
 		        <div key={review.taskID+review.volunteerUserName} className="card">
 		          <div className="card-body">
@@ -162,6 +164,7 @@ class Reviews extends Component {
 		          </div>
 		        </div>
 		      ))}
+			  </Container>
 		    </div>
   		);
   	}

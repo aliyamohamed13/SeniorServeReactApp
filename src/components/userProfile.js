@@ -141,6 +141,7 @@ class EditUserProfile extends Component {
     return (
       <div>
         <Container>
+          <br/>
           <h1> Edit User Profile </h1>
           <h3>
             To edit your user profile for <strong>{this.props.username}</strong>{" "}

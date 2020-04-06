@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NoTasksToDisplay from './notaskstodisplay';
 import AcceptTaskRequest from './accepttaskrequest'
+import {Container, Button} from "reactstrap"
 
 
 class TaskRequest extends Component {
@@ -28,7 +29,7 @@ class TaskRequest extends Component {
 			pendingTasksReq = <NoTasksToDisplay />
 		} else {
 			pendingTasksReq = (
-				<div>
+				<Container>
 				{this.state.userTaskInfo.map(task => (
 					<div key={task.Task_ID} className="card">
 						<div className="card-body">
@@ -41,7 +42,7 @@ class TaskRequest extends Component {
 						</div>
 					</div>
 				))}
-				</div>	
+				</Container>	
 			)
 		}
 
@@ -49,6 +50,7 @@ class TaskRequest extends Component {
 		return (
 			<div>
 				<center>
+					<br/>
 					<h1>My Pending Task Request For Approval</h1>
 				</center>
 				<div>

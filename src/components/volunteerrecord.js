@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Container} from "reactstrap"
 
 
 
@@ -7,7 +8,7 @@ class VolunteerRecords extends Component {
 	render () {
 		console.log(this.props.records)
 		return (
-			<div>
+			<Container className="tasks-grid">
 				{this.props.records.map(record => (
 					<div key={record.record_ID} className="card">
 						<div className="card-body">
@@ -20,7 +21,7 @@ class VolunteerRecords extends Component {
 						</div>
 					</div>
 				))}
-			</div>
+			</Container>
 		)
 	}
 }

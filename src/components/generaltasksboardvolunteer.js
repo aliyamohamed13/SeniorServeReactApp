@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import TaskRequestVolunteer from './taskrequestvolunteer'
+import TaskRequestVolunteer from './taskrequestvolunteer';
+import {Button, Container} from "reactstrap";
 
 
 class GeneralTasksBoardVolunteer extends Component {
@@ -156,12 +157,13 @@ class GeneralTasksBoardVolunteer extends Component {
 
 				<div style={{paddingRight: 10, float: 'right', width: '70%'}}>
 					<center>
+						<br/>
 				        <h1>Task List</h1>
 				     </center>
-					<button type="button" onClick={this.reset} style={{marginBottom: 10}}>
+					<Button type="button" onClick={this.reset} style={{marginBottom: 10}}>
 						Show All Tasks
-					</button>
-
+					</Button>
+					<Container className="tasks-grid">
 					{this.state.TaskInfo.map(task => (
 				        <div key={task.Task_ID} className="card">
 				          <div className="card-body">
@@ -173,7 +175,7 @@ class GeneralTasksBoardVolunteer extends Component {
 				          </div>
 				        	<TaskRequestVolunteer username={this.props.username} taskID={task.Task_ID} status={task.Status}/>
 				        </div>
-				      ))}
+				      ))}</Container>
 				</div>
 		    </div>
 	    )

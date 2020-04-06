@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {Modal, Button} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import MakeReview from './makereview';
 import NoTasksToDisplay from './notaskstodisplay';
+import {Container, Button} from "reactstrap"
 import {
   Form,
   FormGroup,
@@ -250,7 +251,7 @@ class TasksBoard extends Component {
 			currentTask = <NoTasksToDisplay />
 		} else {
 			currentTask = (
-			<div>
+			<Container className="tasks-grid">
 				{this.state.userTaskInfo.map(task => (
 					<div key={task.Task_ID} className="card">
 						<div className="card-body">
@@ -259,17 +260,17 @@ class TasksBoard extends Component {
 								Date: {task.Date}  Status: {task.Status}
 							</h6>
 							<p className="card-text">{task.Address} {task.City} {task.Province} {task.PostalCode}</p>
-						<button type="button" onClick={() => this.handleDeleteTask(task.Task_ID)}>
+						<Button style={{margin:"5px"}} className="del-btn" type="button" onClick={() => this.handleDeleteTask(task.Task_ID)}>
 						Delete Task
-						</button>
+						</Button>
 						{"   "}
-						<button type="button" onClick={() => this.handleUpdateTask(task)}>
+						<Button style={{margin:"5px"}} className="request-btn" type="button" onClick={() => this.handleUpdateTask(task)}>
 						Update Task
-						</button>
+						</Button>
 						{"   "}
-						<button type="button" onClick={() => this.handleMarkComplete(task)}>
+						<Button style={{margin:"5px"}} type="button" onClick={() => this.handleMarkComplete(task)}>
 						Mark Task as Complete
-						</button>
+						</Button>
 						<Modal show={this.state.showUpdateTask} onHide={this.handleClose}>
 					        <Modal.Header closeButton>
 					          <Modal.Title>Task Information</Modal.Title>
@@ -475,7 +476,7 @@ class TasksBoard extends Component {
 					    </Button>
 					</Modal.Footer>
 				</Modal>
-			</div>
+			</Container>
 			)
 		}
 
@@ -490,12 +491,14 @@ class TasksBoard extends Component {
 	    return (
 	    	<div>
 	    		<center>
+					<br/>
 					<h1>My Current Tasks</h1>
 				</center>
 				<div>
 					{currentTask}
 				</div>
 				<center>
+					<br/>
 					<h1>My Completed Tasks</h1>
 				</center>
 				<div>
