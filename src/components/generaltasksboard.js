@@ -188,7 +188,7 @@ class GeneralTasksBoard extends Component {
 					if (response.status === 200) {
 					    if (response.data === "") {
 					    	console.log("POST Successful");
-					    	this.reset();
+					    	this.finishAddPref(randomTaskID);
 					    } else {
 					    alert("Invalid information, please check");
 					    }
@@ -199,7 +199,24 @@ class GeneralTasksBoard extends Component {
 				.catch(function(error) {
 					alert("Something went wrong, please check the fields and try again");
 				});
+	}
+
+	finishAddPref = (randomTaskID) => {
+		var apiPrefPostUrl = "http://localhost:8080/api/v1/preference/taskPref=" + randomTaskID + "&"
+		console.log(this.state.AddTaskPreferencesID)
+		this.state.AddTaskPreferencesID.map(perfID => (
+			axios.post(apiPrefPostUrl + perfID, {})
+				 .then(response => {
+				 	console.log("Pref POST MADE")
+				 	this.reset();
+				 })
+				 .catch(function(error) {
+					alert("Something went wrong, please check the fields and try again")
+				})
+			))
+					
 		this.handleClose();
+
 	}
 
 	getDate = () => {
