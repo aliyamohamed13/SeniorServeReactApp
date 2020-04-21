@@ -20,7 +20,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-var apiBaseUrl = "http://localhost:8080/api/v1/user/";
+var apiBaseUrl = "https://seniorserve-spring-postgres.herokuapp.com/api/v1/user/";
 var seniorChoice = "I am a senior looking to get help with tasks";
 class Login extends Component {
   constructor(props) {
@@ -61,7 +61,7 @@ class Login extends Component {
       console.log(this.state.province);
       console.log(this.state.postalCode);
       axios
-        .post("http://localhost:8080/api/v1/location/", {
+        .post("https://seniorserve-spring-postgres.herokuapp.com/api/v1/location/", {
           PostalCode: this.state.postalCode,
           Address: this.state.address,
           City: this.state.city,
@@ -71,7 +71,7 @@ class Login extends Component {
           console.log(result);
           this.handleRegisterUser();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     }
@@ -99,7 +99,7 @@ class Login extends Component {
           alert("Something went wrong, please try again");
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -114,7 +114,7 @@ class Login extends Component {
     } else {
       axios
         .get(apiBaseUrl + this.state.username)
-        .then(function(response) {
+        .then(function (response) {
           console.log(apiBaseUrl);
           console.log(response);
           if (response.status === 200) {
@@ -129,7 +129,7 @@ class Login extends Component {
             alert("Something went wrong, please try again");
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     }

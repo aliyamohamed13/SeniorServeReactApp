@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NoTasksToDisplay from './notaskstodisplay';
 import AcceptTaskRequest from './accepttaskrequest'
-import {Container, Button} from "reactstrap"
+import { Container, Button } from "reactstrap"
 
 
 class TaskRequest extends Component {
@@ -15,11 +15,11 @@ class TaskRequest extends Component {
 
 	componentDidMount() {
 		console.log(this.props)
-	    fetch("http://localhost:8080/api/v1/task/incompleteTasks/username=" + this.props.username)
-	      .then(res => res.json())
-	      .then(data => {
-	        this.setState({ userTaskInfo: data });
-	      })
+		fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/task/incompleteTasks/username=" + this.props.username)
+			.then(res => res.json())
+			.then(data => {
+				this.setState({ userTaskInfo: data });
+			})
 	}
 
 	render() {
@@ -30,19 +30,19 @@ class TaskRequest extends Component {
 		} else {
 			pendingTasksReq = (
 				<Container>
-				{this.state.userTaskInfo.map(task => (
-					<div key={task.Task_ID} className="card">
-						<div className="card-body">
-							<h5 className="card-title">{task.Description}</h5>
-							<h6 className="card-subtitle mb-2 text-muted">
-								Date: {task.Date}  Status: {task.Status}
-							</h6>
-							<p className="card-text">{task.Address} {task.City} {task.Province} {task.PostalCode}</p>
-							<AcceptTaskRequest taskID={task.Task_ID} username={this.props.username} />
+					{this.state.userTaskInfo.map(task => (
+						<div key={task.Task_ID} className="card">
+							<div className="card-body">
+								<h5 className="card-title">{task.Description}</h5>
+								<h6 className="card-subtitle mb-2 text-muted">
+									Date: {task.Date}  Status: {task.Status}
+								</h6>
+								<p className="card-text">{task.Address} {task.City} {task.Province} {task.PostalCode}</p>
+								<AcceptTaskRequest taskID={task.Task_ID} username={this.props.username} />
+							</div>
 						</div>
-					</div>
-				))}
-				</Container>	
+					))}
+				</Container>
 			)
 		}
 
@@ -50,7 +50,7 @@ class TaskRequest extends Component {
 		return (
 			<div>
 				<center>
-					<br/>
+					<br />
 					<h1>My Pending Task Request For Approval</h1>
 				</center>
 				<div>

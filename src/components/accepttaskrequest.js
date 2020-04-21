@@ -1,43 +1,43 @@
 import axios from "axios";
 import React, { Component } from "react";
-import {Button, Container} from "reactstrap";
+import { Button, Container } from "reactstrap";
 
 class TaskRequest extends Component {
 
 	constructor() {
 		super()
 		this.state = {
-			pendingTaskRequests:[]
+			pendingTaskRequests: []
 		}
 	}
 
 	componentDidMount() {
 		console.log(this.props)
-	    fetch("http://localhost:8080/api/v1/taskrequest/allRequestUser/task_id=" + this.props.taskID)
-	      .then(res => res.json())
-	      .then(data => {
-	        this.setState({ pendingTaskRequests: data });
-	      })
-	      .catch(console.log);
+		fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/taskrequest/allRequestUser/task_id=" + this.props.taskID)
+			.then(res => res.json())
+			.then(data => {
+				this.setState({ pendingTaskRequests: data });
+			})
+			.catch(console.log);
 	}
 
 	handleAcceptRequest = (username) => {
 		console.log(username)
-  		var postUrl = "http://localhost:8080/api/v1/volunteer"
-	  	axios.post(postUrl, {
-		    		"username": username,
-		    		"taskID": this.props.taskID,
-		    		"date": this.getDate()
-		    		})
-		      .then(result => {
-		    		this.reset();
-		    	})
-		      .catch(function(error) {
+		var postUrl = "https://seniorserve-spring-postgres.herokuapp.com/api/v1/volunteer"
+		axios.post(postUrl, {
+			"username": username,
+			"taskID": this.props.taskID,
+			"date": this.getDate()
+		})
+			.then(result => {
+				this.reset();
+			})
+			.catch(function (error) {
 
-				});
-  	}
+			});
+	}
 
-  	getDate = () => {
+	getDate = () => {
 		var date = new Date()
 		var day = date.getDate()
 		var twoDigitDay = ""
@@ -58,12 +58,12 @@ class TaskRequest extends Component {
 	}
 
 	reset = () => {
-		axios.get("http://localhost:8080/api/v1/taskrequest/allRequestUser/task_id=" + this.props.taskID)
-		     .then(result => {
-		     	console.log("reset!")
-		     	this.setState({ pendingTaskRequests: result.data });
-		     })
-		     .catch()
+		axios.get("https://seniorserve-spring-postgres.herokuapp.com/api/v1/taskrequest/allRequestUser/task_id=" + this.props.taskID)
+			.then(result => {
+				console.log("reset!")
+				this.setState({ pendingTaskRequests: result.data });
+			})
+			.catch()
 	}
 
 
@@ -79,24 +79,24 @@ class TaskRequest extends Component {
 			acceptStatus = (
 				<Container className="tasks-grid">
 					{this.state.pendingTaskRequests.map(request => (
-						<div key={request.username} style={{marginBottom: 10}}>
+						<div key={request.username} style={{ marginBottom: 10 }}>
 							<h6> Request From: {request.username} </h6>
 							<p> Volunteer Rating: {request.rating}
-							<br /> Hours as Volunteer: {request.totalHours}</p>
+								<br /> Hours as Volunteer: {request.totalHours}</p>
 							<Button onClick={event => this.handleAcceptRequest(request.username)}>
 								Accept Request
 							</Button>
 						</div>
-						))}
+					))}
 				</Container>
 			)
 		}
 
 
 		return (
-				<div>
-					{acceptStatus}
-				</div>
+			<div>
+				{acceptStatus}
+			</div>
 		)
 
 	}

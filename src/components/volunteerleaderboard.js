@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Container, Row, Col} from 'react-grid-system'
+import { Container, Row, Col } from 'react-grid-system'
 
 class VolunteerLeaderBoard extends Component {
 	constructor() {
@@ -14,40 +14,40 @@ class VolunteerLeaderBoard extends Component {
 	}
 
 	componentDidMount() {
-		fetch("http://localhost:8080/api/v1/review/allAverageRating")
-		    .then(res => res.json())
-		    .then(data => {
-		       this.setState({ ratingRanking: data });
-		    })
-		fetch("http://localhost:8080/api/v1/volunteerRecord/allUserRatingHours")
-			.then(res => res.json())
-		    .then(data => {
-		       this.setState({ hoursRanking: data });
-		    })
-		fetch("http://localhost:8080/api/v1/user/volunteerAllSenior")
-			.then(res => res.json())
-		    .then(data => {
-		       this.setState({ volunteerAllSenior: data });
-		    })
-		fetch("http://localhost:8080/api/v1/user/volunteerAllPref")
+		fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/review/allAverageRating")
 			.then(res => res.json())
 			.then(data => {
-				this.setState({volunteerAllPref: data});
+				this.setState({ ratingRanking: data });
 			})
-		fetch("http://localhost:8080/api/v1/user/volunteerAllReviewTask")
+		fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/volunteerRecord/allUserRatingHours")
 			.then(res => res.json())
 			.then(data => {
-				this.setState({volunteerAllReview: data});
+				this.setState({ hoursRanking: data });
+			})
+		fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/user/volunteerAllSenior")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({ volunteerAllSenior: data });
+			})
+		fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/user/volunteerAllPref")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({ volunteerAllPref: data });
+			})
+		fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/user/volunteerAllReviewTask")
+			.then(res => res.json())
+			.then(data => {
+				this.setState({ volunteerAllReview: data });
 			})
 	}
 
 	render() {
 		console.log(this.state.hoursRanking)
-	    return (
-	    	<div >
-				<br/>
-	    		<h1>Snapshot of Volunteer Achievements</h1>
-	    		<Container style={{justifyContent: 'center', maxWidth: '70%'}}>
+		return (
+			<div >
+				<br />
+				<h1>Snapshot of Volunteer Achievements</h1>
+				<Container style={{ justifyContent: 'center', maxWidth: '70%' }}>
 					<Row>
 						<Col>
 							<table>
@@ -88,7 +88,7 @@ class VolunteerLeaderBoard extends Component {
 						</Col>
 					</Row>
 
-					<Row style={{paddingTop: "5%"}}>
+					<Row style={{ paddingTop: "5%" }}>
 						<Col>
 							<table>
 								<thead>
@@ -111,18 +111,18 @@ class VolunteerLeaderBoard extends Component {
 						<Col>
 							<table >
 								<thead>
-								<th colSpan="3">Volunteered for all Task Preferences</th>
+									<th colSpan="3">Volunteered for all Task Preferences</th>
 								</thead>
 								<thead>
-								<th>Username</th>
-								<th>First Name</th>
-								<th>Last Name</th>
+									<th>Username</th>
+									<th>First Name</th>
+									<th>Last Name</th>
 								</thead>
 								{this.state.volunteerAllPref.map(hoursRating => (
 									<tbody>
-									<td>{hoursRating.username}</td>
-									<td>{hoursRating.firstName}</td>
-									<td>{hoursRating.lastName}</td>
+										<td>{hoursRating.username}</td>
+										<td>{hoursRating.firstName}</td>
+										<td>{hoursRating.lastName}</td>
 									</tbody>
 								))}
 							</table>
@@ -130,26 +130,26 @@ class VolunteerLeaderBoard extends Component {
 						<Col>
 							<table>
 								<thead>
-								<th colSpan="3">Been Reviewed for all their Volunteer Tasks</th>
+									<th colSpan="3">Been Reviewed for all their Volunteer Tasks</th>
 								</thead>
 								<thead>
-								<th>Username</th>
-								<th>First Name</th>
-								<th>Last Name</th>
+									<th>Username</th>
+									<th>First Name</th>
+									<th>Last Name</th>
 								</thead>
 								{this.state.volunteerAllReview.map(hoursRating => (
 									<tbody>
-									<td>{hoursRating.username}</td>
-									<td>{hoursRating.firstName}</td>
-									<td>{hoursRating.lastName}</td>
+										<td>{hoursRating.username}</td>
+										<td>{hoursRating.firstName}</td>
+										<td>{hoursRating.lastName}</td>
 									</tbody>
 								))}
 							</table>
 						</Col>
 					</Row>
 				</Container>
-	    	</div>
-	    )
+			</div>
+		)
 	}
 }
 

@@ -8,7 +8,7 @@ class Records extends Component {
 	constructor() {
 		super()
 		this.state = {
-			volunteerHours: "", 
+			volunteerHours: "",
 			volunteerRecord: [],
 			selectionFeilds: ["date", "timeOfDay", "hours", "task_id", "senior", "description"],
 			selectedSelectionProperty: [],
@@ -18,101 +18,102 @@ class Records extends Component {
 	}
 
 	componentDidMount() {
-		fetch("http://localhost:8080/api/v1/volunteerRecord/totalHours/username=" + this.props.username)
-	     	.then(res => res.json())
-	     	.then(data => {
-	        this.setState({ volunteerHours: data });
-	      	})
-	    fetch("http://localhost:8080/api/v1/volunteerRecord/records/username=" + this.props.username)
-	     	.then(res => res.json())
-	     	.then(data => {
-	        this.setState({ volunteerRecord: data });
-	      	})
-	  
+		fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/volunteerRecord/totalHours/username=" + this.props.username)
+			.then(res => res.json())
+			.then(data => {
+				this.setState({ volunteerHours: data });
+			})
+		fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/volunteerRecord/records/username=" + this.props.username)
+			.then(res => res.json())
+			.then(data => {
+				this.setState({ volunteerRecord: data });
+			})
+
 	}
 
 	handleReset = () => {
 		console.log("reseting....")
-		this.setState({	filtered: false, 
-						filtereditems: [],
-						selectedSelectionProperty: []
+		this.setState({
+			filtered: false,
+			filtereditems: [],
+			selectedSelectionProperty: []
 		})
 		document.querySelectorAll('input[type=checkbox]')
-				.forEach( ele => ele.checked = false );
+			.forEach(ele => ele.checked = false);
 	}
 
 	handleSubmitProjection = () => {
-		this.setState({	filtered: true })
+		this.setState({ filtered: true })
 		console.log(this.formatProjections())
-		axios.get("http://localhost:8080/api/v1/volunteerRecord/records/username=" + this.props.username 
+		axios.get("https://seniorserve-spring-postgres.herokuapp.com/api/v1/volunteerRecord/records/username=" + this.props.username
 			+ "/" + this.formatProjections())
-		     .then(result => {
-		     	console.log("reset!")
-		     	this.setState({ filtereditems: result.data });
-		     })
-		     .catch()
+			.then(result => {
+				console.log("reset!")
+				this.setState({ filtereditems: result.data });
+			})
+			.catch()
 	}
 
 	formatProjections = () => {
 		let projectionUrl = ""
-		
-		this.state.selectedSelectionProperty.forEach(function(entry) {
-				projectionUrl = projectionUrl + entry + "|"
-			})
+
+		this.state.selectedSelectionProperty.forEach(function (entry) {
+			projectionUrl = projectionUrl + entry + "|"
+		})
 
 		return projectionUrl
 	}
 
-  	render() {
+	render() {
 
-  		let recordStatus
+		let recordStatus
 
-  		console.log(this.state.filtereditems)
+		console.log(this.state.filtereditems)
 
-  		if (this.state.filtereditems.length === 0 && this.state.volunteerRecord.length === 0) {
-  			recordStatus = (<h4> -- No Records To Be Displayed -- </h4>)
-  		} else {
-  			if (this.state.filtered) {
-  				recordStatus = <VolunteerRecord records={this.state.filtereditems}/>
-  			} else {
-  				recordStatus = <VolunteerRecord records={this.state.volunteerRecord}/>
-  			}
-  		}
+		if (this.state.filtereditems.length === 0 && this.state.volunteerRecord.length === 0) {
+			recordStatus = (<h4> -- No Records To Be Displayed -- </h4>)
+		} else {
+			if (this.state.filtered) {
+				recordStatus = <VolunteerRecord records={this.state.filtereditems} />
+			} else {
+				recordStatus = <VolunteerRecord records={this.state.volunteerRecord} />
+			}
+		}
 
 
-    	return (
+		return (
 
-    		<div style={{display: 'table', width: '90%'}}>
-   
-	    		<div align="left" style={{paddingLeft: '5%', paddingRight: 20, float: 'left', width: '30%', marginTop: '5%'}}>
-			    		<div>
-				    		<h3> Selection Property: </h3>
-				    		{"   "}
-				    		{this.state.selectionFeilds.map(key => (
-										<div key={key} style={{position: "relative", left: "25px"}}>
-											<div>
-												<Input
-													type="checkbox"
-													name= {key}
-													id= {key}
-													onChange={(e) => this.setState({selectedSelectionProperty: [...this.state.selectedSelectionProperty, key]})}/>
-											<label> {key} </label>
-											</div>
-										</div>
-									))}
-							<Button onClick={event => this.handleSubmitProjection(event)}> Filter By Property </Button>
-						</div>
-			    	<Button style={{marginTop: 10}} type="button" onClick={e => this.handleReset()}> Reset </Button>
-			    </div>	
-			    <div style={{paddingRight: 10, float: 'right', width: '70%'}}>
-					<br/>
-			    	<h1> Records Page </h1>
+			<div style={{ display: 'table', width: '90%' }}>
+
+				<div align="left" style={{ paddingLeft: '5%', paddingRight: 20, float: 'left', width: '30%', marginTop: '5%' }}>
+					<div>
+						<h3> Selection Property: </h3>
+						{"   "}
+						{this.state.selectionFeilds.map(key => (
+							<div key={key} style={{ position: "relative", left: "25px" }}>
+								<div>
+									<Input
+										type="checkbox"
+										name={key}
+										id={key}
+										onChange={(e) => this.setState({ selectedSelectionProperty: [...this.state.selectedSelectionProperty, key] })} />
+									<label> {key} </label>
+								</div>
+							</div>
+						))}
+						<Button onClick={event => this.handleSubmitProjection(event)}> Filter By Property </Button>
+					</div>
+					<Button style={{ marginTop: 10 }} type="button" onClick={e => this.handleReset()}> Reset </Button>
+				</div>
+				<div style={{ paddingRight: 10, float: 'right', width: '70%' }}>
+					<br />
+					<h1> Records Page </h1>
 					<h4> Total Volunteer Hours: {this.state.volunteerHours}</h4>
-	    			{recordStatus}
-	    		</div>
-    		</div>
-    	)
-  	}
+					{recordStatus}
+				</div>
+			</div>
+		)
+	}
 }
 
 export default Records;

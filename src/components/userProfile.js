@@ -10,7 +10,7 @@ import {
   Container,
   Button
 } from "reactstrap";
-var apiBaseUrl = "http://localhost:8080/api/v1/user/";
+var apiBaseUrl = "https://seniorserve-spring-postgres.herokuapp.com/api/v1/user/";
 
 class EditUserProfile extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class EditUserProfile extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/api/v1/user/" + this.props.username)
+    fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/user/" + this.props.username)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -61,7 +61,7 @@ class EditUserProfile extends Component {
       console.log(this.state.address);
       console.log(this.state.postalCode);
       axios
-        .post("http://localhost:8080/api/v1/location/", {
+        .post("https://seniorserve-spring-postgres.herokuapp.com/api/v1/location/", {
           PostalCode: this.state.postalCode,
           Address: this.state.address,
           City: this.state.city,
@@ -71,7 +71,7 @@ class EditUserProfile extends Component {
           console.log(result);
           this.updateUser();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     }
@@ -100,7 +100,7 @@ class EditUserProfile extends Component {
           alert("Something went wrong, please try again");
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -111,7 +111,7 @@ class EditUserProfile extends Component {
     console.log(this.props.username);
     axios
       .delete(apiBaseUrl + this.props.username, {})
-      .then(function(response) {
+      .then(function (response) {
         if (response.status === 200) {
           self.setState({ redirect: true });
         } else {
@@ -141,7 +141,7 @@ class EditUserProfile extends Component {
     return (
       <div>
         <Container>
-          <br/>
+          <br />
           <h1> Edit User Profile </h1>
           <h3>
             To edit your user profile for <strong>{this.props.username}</strong>{" "}

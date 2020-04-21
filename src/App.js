@@ -11,7 +11,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:8080/api/v1/user/")
+    fetch("https://seniorserve-spring-postgres.herokuapp.com/api/v1/user/")
       .then(res => res.json())
       .then(data => {
         this.setState({ users: data });

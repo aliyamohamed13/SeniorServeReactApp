@@ -26,8 +26,8 @@ class Mainlanding extends Component {
   componentDidMount() {
     this.setState({ username: this.props.location.state.username });
     fetch(
-      "http://localhost:8080/api/v1/user/senior/" +
-        this.props.location.state.username
+      "https://seniorserve-spring-postgres.herokuapp.com/api/v1/user/senior/" +
+      this.props.location.state.username
     )
       .then(res => res.json())
       .then(data => {
@@ -45,8 +45,8 @@ class Mainlanding extends Component {
           {this.state.senior ? (
             <NavSenior username={this.state.username} />
           ) : (
-            <Nav username={this.state.username} />
-          )}
+              <Nav username={this.state.username} />
+            )}
           <Switch>
             <Route
               path="/mainlanding"

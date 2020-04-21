@@ -15,22 +15,23 @@ class TaskRequestVolunteer extends Component {
 		console.log(this.props.status)
 		console.log(this.props.taskID)
 		console.log(this.props.username)
-		var postUrl = "http://localhost:8080/api/v1/taskrequest"
+		var postUrl = "https://seniorserve-spring-postgres.herokuapp.com/api/v1/taskrequest"
 		var randomRequestID = Math.floor(Math.random() * 1000000000)
 		axios.post(postUrl, {
-				    	"request_ID": randomRequestID,
-				    	"date": this.getDate(),
-				    	"task_ID": this.props.taskID,
-				    	"username": this.props.username
-				    })
+			"request_ID": randomRequestID,
+			"date": this.getDate(),
+			"task_ID": this.props.taskID,
+			"username": this.props.username
+		})
 			.then(result => {
 				if (result.status === 200) {
 					console.log("POST Successful");
-					this.setState({buttonText: "Request Sent!"})
+					this.setState({ buttonText: "Request Sent!" })
 				} else {
 					alert("Something went wrong, please try again later");
-				}})
-			.catch(function(error) {
+				}
+			})
+			.catch(function (error) {
 				alert("Something went wrong, please try again later");
 			});
 
@@ -61,10 +62,9 @@ class TaskRequestVolunteer extends Component {
 
 		let requestButton
 
-		if (this.props.status !== "Completed" && this.props.status !== "completed")
-		{
+		if (this.props.status !== "Completed" && this.props.status !== "completed") {
 			requestButton = (
-				<Button style={{margin:"20px"}} id={this.props.taskID} onClick={(e) => this.handleRequestClick()}>
+				<Button style={{ margin: "20px" }} id={this.props.taskID} onClick={(e) => this.handleRequestClick()}>
 					{this.state.buttonText}
 				</Button>
 			)
