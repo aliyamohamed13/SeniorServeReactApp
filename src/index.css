@@ -98,6 +98,10 @@ h2 {
   color: white;
 }
 
+.loginIMG {
+  max-width: 50vw;
+}
+
 .description-card {
   padding: 8%;
   border-style: outset;
