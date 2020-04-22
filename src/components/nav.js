@@ -55,7 +55,7 @@ const NavbarSS = props => {
               </Link>
             </NavItem>
             <NavItem>
-              <a href="http://localhost:3000/">logout</a>
+              <a href="https://seniorserve-react.herokuapp.com/">logout</a>
             </NavItem>
           </Nav>
         </Collapse>
