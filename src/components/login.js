@@ -184,6 +184,7 @@ class Login extends Component {
                   Submit
                 </Button>
               </Form>
+              <img src="../../seniorServe_logo.png" alt="" />
             </Container>
           </Col>
           <Col>

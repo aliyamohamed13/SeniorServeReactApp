@@ -18,7 +18,7 @@ const NavbarSS = props => {
   return (
     <div>
       <Navbar className="change" dark expand="md">
-        <NavbarBrand> seniorServe</NavbarBrand>
+        <NavbarBrand>seniorServe  <img src="../../seniorServe_logo.png" alt="" style={{ maxHeight: "100%", height: "40px" }} /></NavbarBrand>
         <NavbarToggler className="toggle-nav" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-left" navbar>
